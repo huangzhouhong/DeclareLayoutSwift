@@ -9,7 +9,7 @@
 import UIKit
 
 public enum LayoutablePropertyName {
-    case horizontalAlignment, verticalAlignment, width, height, margin, padding, gridRowIndex, gridColumnIndex
+    case horizontalAlignment, verticalAlignment, width, height, margin, padding, visibility, gridRowIndex, gridColumnIndex
 }
 
 public class LayoutableProperty<TargetPropertyType>: PropertyBase<LayoutablePropertyName> {
@@ -31,13 +31,16 @@ public class LayoutableProperty<TargetPropertyType>: PropertyBase<LayoutableProp
     public static var padding: LayoutableProperty<UIEdgeInsets?> {
         return LayoutableProperty<UIEdgeInsets?>(.padding)
     }
+    public static var visibility: LayoutableProperty<Visibility> {
+        return LayoutableProperty<Visibility>(.visibility)
+    }
     public static var gridRowIndex: LayoutableProperty<Int> {
         return LayoutableProperty<Int>(.gridRowIndex)
     }
     public static var gridColumnIndex: LayoutableProperty<Int> {
         return LayoutableProperty<Int>(.gridColumnIndex)
     }
-    
+
     // for short
     public static var hAlign: LayoutableProperty<HorizontalAlignment?> {
         return horizontalAlignment
@@ -66,5 +69,7 @@ public func <- <TargetType, TargetPropertyType>(property: LayoutableProperty<Tar
         return PropertySetter<TargetType>(setter: { Grid.setRow(ele: $0, row: value as! Int) })
     case .gridColumnIndex:
         return PropertySetter<TargetType>(setter: { Grid.setColumn(ele: $0, column: value as! Int) })
+    case .visibility:
+        return PropertySetter<TargetType>(setter: {$0.visibility = value as! Visibility})
     }
 }

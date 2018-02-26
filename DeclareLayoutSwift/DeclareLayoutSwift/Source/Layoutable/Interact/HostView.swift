@@ -9,6 +9,7 @@
 import UIKit
 
 public class HostView: UIView, Layoutable {
+    
     public var desiredSize: CGSize = CGSize.zero
     
     public var horizontalAlignment: HorizontalAlignment?
@@ -26,6 +27,12 @@ public class HostView: UIView, Layoutable {
     public var children: [Layoutable] = []
     
     public var parent: Layoutable?
+    
+    public var visibility: Visibility = .Visible {
+        didSet {
+            isHidden = visibility != .Visible
+        }
+    }
     
     public var measured: Bool = false
     

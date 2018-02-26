@@ -168,24 +168,24 @@ public class Grid: Panel {
         var childWidth: CGFloat = cellWidth  // if .Stretch
         var childHeight: CGFloat = cellHeight
         if childHorizontalAlign != .Stretch {
-            if let explicitWidth = child.width {
-                childWidth = explicitWidth
-            } else {
+//            if let explicitWidth = child.width {
+//                childWidth = explicitWidth
+//            } else {
                 if !child.measured {
                     child.measure(DLSize(width: cellWidth,height: cellHeight))
                 }
                 childWidth = child.desiredSize.width
-            }
+//            }
         }
         if childVerticalAlign != .Stretch {
-            if let explicitHeight = child.height {
-                childHeight = explicitHeight
-            } else {
+//            if let explicitHeight = child.height {
+//                childHeight = explicitHeight
+//            } else {
                 if !child.measured {
                     child.measure(DLSize(width: cellWidth,height: cellHeight))
                 }
                 childHeight = child.desiredSize.height
-            }
+//            }
         }
         
         switch childHorizontalAlign {
@@ -233,23 +233,23 @@ public class Grid: Panel {
     func satisfyDefinitions(width: CGFloat, height: CGFloat, rowDefs: [Definition], columnDefs: [Definition]) -> (rowHeights: [CGFloat], columnWidths: [CGFloat]) {
         let columnWidths =
             satisfy(availabelSpace: width, defs: columnDefs, childrenForDefIndex: { childrenForColumns[$0] }, measureChild: { child, space in
-                if let explicitWidth = child.width{
-                    return explicitWidth
-                }else{
+//                if let explicitWidth = child.width{
+//                    return explicitWidth
+//                }else{
                     child.measure(DLSize(width:space,height:CGFloat.nan))
                     return child.desiredSize.width
-                }
+//                }
             })
         
         let rowHeights =
             satisfy(availabelSpace: height, defs: rowDefs, childrenForDefIndex: { childrenForRows[$0] }, measureChild: { child, space in
-                if let explicitHeight = child.height{
-                    return explicitHeight
-                }else{
+//                if let explicitHeight = child.height{
+//                    return explicitHeight
+//                }else{
                     let columnIndex = Grid.getColumn(ele: child)
                     child.measure(DLSize(width: columnWidths[columnIndex], height: space))
                     return child.desiredSize.height
-                }
+//                }
             })
         
         return (rowHeights, columnWidths)

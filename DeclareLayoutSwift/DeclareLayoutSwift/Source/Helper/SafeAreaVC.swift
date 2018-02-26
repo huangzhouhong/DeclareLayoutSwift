@@ -31,6 +31,14 @@ open class SafeAreaVC: UIViewController {
 //        hostView.backgroundColor = .white
     }
     
+    public func setupRootElement(createRootElement:()->UIElement){
+        setupHostView {
+            HostView{
+                createRootElement()
+            }
+        }
+    }
+    
     
     
     var hostView:HostView!

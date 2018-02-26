@@ -46,6 +46,7 @@ public class ViewElement<ViewType>: UIElement where ViewType: UIView {
         self.view = view
         
         super.init()
+        self.selfPadding = view is SelfPaddingable
     }
     
     public convenience override init() {
@@ -62,17 +63,21 @@ public class ViewElement<ViewType>: UIElement where ViewType: UIView {
         propertySetters.forEach { $0.setter(self) }
     }
     
-    public override func measure(_ availableSize: DLSize) {
-        if view is SelfPaddingable {
-            var availableSize = availableSize
-            availableSize.removeInset(inset: margin)
-            desiredSize = measureOverwrite(availableSize)
-            desiredSize.addInset(inset: margin)
-            measured = true
-        } else {
-            return super.measure(availableSize)
-        }
+    override func onVisibilityChanged() {
+        self.view.isHidden = visibility != .Visible
     }
+    
+//    public override func measure(_ availableSize: DLSize) {
+//        if view is SelfPaddingable {
+//            var availableSize = availableSize
+//            availableSize.removeInset(inset: margin)
+//            desiredSize = measureOverwrite(availableSize)
+//            desiredSize.addInset(inset: margin)
+//            measured = true
+//        } else {
+//            return super.measure(availableSize)
+//        }
+//    }
     
     override func measureOverwrite(_ availableSize: DLSize) -> CGSize {
         return self.view.sizeThatFits(CGSize(availableSize))

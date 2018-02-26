@@ -20,6 +20,11 @@ public extension SupportStoreProperty{
     }
 }
 
+// TODO: Collapsed not implemented
+public enum Visibility{
+    case Collapsed,Hidden,Visible 
+}
+
 public protocol Layoutable :class, SupportStoreProperty{
     var desiredSize:CGSize{get}
     var horizontalAlignment:HorizontalAlignment?{get set}
@@ -32,6 +37,8 @@ public protocol Layoutable :class, SupportStoreProperty{
     
     var children:[Layoutable]{get set}
     var parent:Layoutable?{get set}
+    
+    var visibility:Visibility{get set}
     
     // not all child measured, parent measure is designed to get itself desireSize
     var measured:Bool{get set}

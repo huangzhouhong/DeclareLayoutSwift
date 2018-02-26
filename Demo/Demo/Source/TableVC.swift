@@ -20,18 +20,18 @@ class TableVC: SafeAreaVC, TableElementDelegate {
         let index = text.index(text.startIndex, offsetBy: Int(randomIndex))
         let randString: String = String(text[...index])
 
-        return Grid(.columns <= [.auto(min: 50), .star(1)], .padding <= Insets(vertical: 8, horizontal: 20)) {
+        return Grid(.columns <- [.auto(min: 50), .star(1)], .padding <- Insets(vertical: 8, horizontal: 20)) {
 //            [ViewElement {
-//                UILabel(.text <= String(indexPath.row))
+//                UILabel(.text <- String(indexPath.row))
 //            },
-            [Label(.text <= String(indexPath.row)),
-             Label(.gridColumnIndex <= 1,.text <= randString,.numberOfLines <= 0)]
-//             ViewElement(.gridColumnIndex <= 1) {
+            [Label(.text <- String(indexPath.row)),
+             Label(.gridColumnIndex <- 1,.text <- randString,.numberOfLines <- 0)]
+//             ViewElement(.gridColumnIndex <- 1) {
 //                let text = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 //                let randomIndex = arc4random_uniform(UInt32(text.count))
 //                let index = text.index(text.startIndex, offsetBy: Int(randomIndex))
 //                //                let string:String = String(text[...index])
-//                let label = UILabel(.text <= String(text[...index]))
+//                let label = UILabel(.text <- String(text[...index]))
 //                label.numberOfLines = 0
 //                //                label.lineBreakMode = .byCharWrapping
 //                return label
@@ -43,7 +43,7 @@ class TableVC: SafeAreaVC, TableElementDelegate {
         super.viewDidLoad()
         setupHostView {
             HostView {
-                TableElement(.delegate <= self)
+                TableElement(.delegate <- self)
             }
         }
     }

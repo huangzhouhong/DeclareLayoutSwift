@@ -28,6 +28,11 @@ public class UIElement: NSObject, Layoutable {
     
     public var children: [Layoutable] = []
     public var parent: Layoutable?
+    public var visibility: Visibility = .Visible{
+        didSet{
+            onVisibilityChanged()
+        }
+    }
     public var measured: Bool = false
     
     private var _hostView: UIView?
@@ -41,29 +46,13 @@ public class UIElement: NSObject, Layoutable {
         }
     }
     
-    override init() {
-        super.init()
-        
-//        children.observe { [weak self] (operation) in
-//            switch operation{
-//            case .Add(let child):
-//                self?.setupChild(child, parent: self)
-//            case .Remove(let child):
-//                self?.setupChild(child, parent: nil)
-//            }
-//        }
-        
-    }
+    /* self padding means this element will calculate padding itself,
+     such as label and button*/
+    var selfPadding: Bool = false
     
-//    private func setupChild(_ child:Layoutable,parent:Layoutable?){
-//        child.parent = parent
-    ////        if let element = child as? UIElement{
-    ////            element.parent=parent
-    ////        }else if let view = child as? UIView{
-    ////            view.parent = parent
-    ////        }
+//    override init() {
+//        super.init()
 //    }
-    
     public func setup() {
         for var child in children {
             child.parent = self
@@ -72,14 +61,27 @@ public class UIElement: NSObject, Layoutable {
         measured = false
     }
     
-    public func measure(_ availableSize: DLSize) {
+    // handle margin,padding,explicit size
+    public final func measure(_ availableSize: DLSize) {
         var availableSize = availableSize
         availableSize.removeInset(inset: margin)
-        availableSize.removeInset(inset: padding)
         
-        desiredSize = measureOverwrite(availableSize)
+        if !selfPadding {
+            availableSize.removeInset(inset: padding)
+        }
         
-        desiredSize.addInset(inset: padding)
+        if let explicitWidth = width, let explicitHeight = height {
+            desiredSize = CGSize(width: explicitWidth, height: explicitHeight)
+        } else {
+            let availableWidth = width ?? availableSize.width
+            let availableHeight = height ?? availableSize.height
+            desiredSize = measureOverwrite(DLSize(width: availableWidth, height: availableHeight))
+        }
+        
+        if !selfPadding {
+            desiredSize.addInset(inset: padding)
+        }
+        
         desiredSize.addInset(inset: margin)
         measured = true
     }
@@ -96,6 +98,12 @@ public class UIElement: NSObject, Layoutable {
     
     func arrangeOverwrite(rect: CGRect, innerRect: CGRect) {
         assert(false)
+    }
+    
+    func onVisibilityChanged(){
+        for child in children{
+            child.visibility = self.visibility
+        }
     }
 }
 
@@ -192,37 +200,37 @@ public class UIElement: NSObject, Layoutable {
 //    }
 // }
 
-class DeclareLayoutView: UIView {
-    var hostElement: UIElement?
-    func loadUIElement(ele: UIElement) {
-        hostElement = ele
-//        ele.parent=self
-//        layoutElements()
-    }
-    
-//    override var bounds: CGRect{
-//        didSet{
-//            layoutElements()
-//        }
+// class DeclareLayoutView: UIView {
+//    var hostElement: UIElement?
+//    func loadUIElement(ele: UIElement) {
+//        hostElement = ele
+////        ele.parent=self
+////        layoutElements()
 //    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        SpeedLog.print("start layoutSubviews")
-        layoutElements()
-    }
-    
-    func layoutElements() {
-        guard let hostElement = hostElement else {
-            return
-        }
-        
-        hostElement.setup()
-        hostElement.measure(DLSize(self.bounds.size))
-        hostElement.arrange(self.bounds)
-    }
-    
-    override func draw(_ rect: CGRect) {
-        
-    }
-}
+//
+////    override var bounds: CGRect{
+////        didSet{
+////            layoutElements()
+////        }
+////    }
+//
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//        SpeedLog.print("start layoutSubviews")
+//        layoutElements()
+//    }
+//
+//    func layoutElements() {
+//        guard let hostElement = hostElement else {
+//            return
+//        }
+//
+//        hostElement.setup()
+//        hostElement.measure(DLSize(self.bounds.size))
+//        hostElement.arrange(self.bounds)
+//    }
+//
+//    override func draw(_ rect: CGRect) {
+//
+//    }
+// }

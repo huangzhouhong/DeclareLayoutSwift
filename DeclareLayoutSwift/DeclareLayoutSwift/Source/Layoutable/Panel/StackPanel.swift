@@ -47,7 +47,21 @@ public class StackPanel : Panel{
         propertySetters.forEach { $0.setter(self)}
     }
     
-    override public func measure(_ availableSize: DLSize) {
+//    override public func measure(_ availableSize: DLSize) {
+//        var width:CGFloat=0
+//        var height:CGFloat=0
+//
+//        let processChildSize = orientation == .Vertical ? processChildSizeVertical : processChildSizeHorizontal
+//
+//        for child in children{
+//            child.measure(DLSize.nan)
+//            processChildSize(child, &width, &height)
+//        }
+//
+//        desiredSize = CGSize(width: width, height: height)
+//    }
+    
+    override func measureOverwrite(_ availableSize: DLSize) -> CGSize {
         var width:CGFloat=0
         var height:CGFloat=0
         
@@ -58,7 +72,7 @@ public class StackPanel : Panel{
             processChildSize(child, &width, &height)
         }
         
-        desiredSize = CGSize(width: width, height: height)
+        return CGSize(width: width, height: height)
     }
     
     func processChildSizeVertical(child:Layoutable,width:inout CGFloat,height:inout CGFloat){

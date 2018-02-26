@@ -14,6 +14,8 @@
 		CA31360320307DB500BFE06A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA31360120307DB500BFE06A /* LaunchScreen.storyboard */; };
 		CA3136B520340DCB00BFE06A /* GridColumnSplitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3136AF20340DCB00BFE06A /* GridColumnSplitVC.swift */; };
 		CAA65084203C53EE001AA91A /* GridSelectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA65083203C53ED001AA91A /* GridSelectVC.swift */; };
+		CAB8594B2040F1D6003BF3DC /* ClassMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB8594A2040F1D6003BF3DC /* ClassMainVC.swift */; };
+		CAB8594D2040F31F003BF3DC /* TableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB8594C2040F31F003BF3DC /* TableVC.swift */; };
 		CAE2B1AF203EFCA7009FACD3 /* DeclareLayoutSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE2B1AE203C5917009FACD3 /* DeclareLayoutSwift.framework */; };
 		CAE2B1B0203EFCA7009FACD3 /* DeclareLayoutSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CAE2B1AE203C5917009FACD3 /* DeclareLayoutSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CAE2B1B3203EFD59009FACD3 /* StackVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2B1B2203EFD59009FACD3 /* StackVC.swift */; };
@@ -44,6 +46,8 @@
 		CA31360420307DB500BFE06A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA3136AF20340DCB00BFE06A /* GridColumnSplitVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridColumnSplitVC.swift; sourceTree = "<group>"; };
 		CAA65083203C53ED001AA91A /* GridSelectVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridSelectVC.swift; sourceTree = "<group>"; };
+		CAB8594A2040F1D6003BF3DC /* ClassMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassMainVC.swift; sourceTree = "<group>"; };
+		CAB8594C2040F31F003BF3DC /* TableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableVC.swift; sourceTree = "<group>"; };
 		CAE2B1AE203C5917009FACD3 /* DeclareLayoutSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DeclareLayoutSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAE2B1B2203EFD59009FACD3 /* StackVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackVC.swift; sourceTree = "<group>"; };
 		CAE2B1B6203F01BA009FACD3 /* QQMsgVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QQMsgVC.swift; sourceTree = "<group>"; };
@@ -95,10 +99,12 @@
 		CA3136AC20340DCB00BFE06A /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				CAB859492040F0A3003BF3DC /* School */,
 				CAA65083203C53ED001AA91A /* GridSelectVC.swift */,
 				CAE2B1B2203EFD59009FACD3 /* StackVC.swift */,
 				CA3136AF20340DCB00BFE06A /* GridColumnSplitVC.swift */,
 				CAE2B1B6203F01BA009FACD3 /* QQMsgVC.swift */,
+				CAB8594C2040F31F003BF3DC /* TableVC.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -109,6 +115,14 @@
 				CAE2B1AE203C5917009FACD3 /* DeclareLayoutSwift.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CAB859492040F0A3003BF3DC /* School */ = {
+			isa = PBXGroup;
+			children = (
+				CAB8594A2040F1D6003BF3DC /* ClassMainVC.swift */,
+			);
+			path = School;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,6 +199,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAA65084203C53EE001AA91A /* GridSelectVC.swift in Sources */,
+				CAB8594D2040F31F003BF3DC /* TableVC.swift in Sources */,
+				CAB8594B2040F1D6003BF3DC /* ClassMainVC.swift in Sources */,
 				CA3135FB20307DB500BFE06A /* ViewController.swift in Sources */,
 				CA3136B520340DCB00BFE06A /* GridColumnSplitVC.swift in Sources */,
 				CA3135F920307DB500BFE06A /* AppDelegate.swift in Sources */,

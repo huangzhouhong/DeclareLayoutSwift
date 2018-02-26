@@ -6,51 +6,57 @@
 //  Copyright © 2017年 com.yasoon. All rights reserved.
 //
 
+import DeclareLayoutSwift
+import ObjectiveC
 import UIKit
 
 class GridSelectVC: UITableViewController {
-    
+
 //    let names=["GridColumnSplitVC" , "GridMixVC","StackVC","GridNestedVC"]
-//    let names = [StackVC.self, TableVC.self,GridColumnSplitVC.self,QQMsgVC.self]
-    let names = [GridColumnSplitVC.self,StackVC.self,QQMsgVC.self]
+    var names: [SafeAreaVC.Type] = []
+
+    fileprivate func findAllVC() {
+        var count: UInt32 = 0
+        let classList = objc_copyClassList(&count)!
+
+        for i in 0..<Int(count) {
+            let cls: AnyClass = classList[i]
+            if class_getSuperclass(cls) == SafeAreaVC.self {
+                self.names.append(cls as! SafeAreaVC.Type)
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.findAllVC()
     }
-    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return names.count
-        
+        return self.names.count
+
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
-        cell.textLabel?.text = String( describing: names[indexPath.row])
-        
-        
+        cell.textLabel?.text = String(describing: names[indexPath.row])
 
         return cell
     }
- 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let name = self.names[indexPath.row]
         let vc = name.init()
 //        if let vc = vc{
-        vc.title = String( describing: names[indexPath.row])
+        vc.title = String(describing: names[indexPath.row])
 
-            self.navigationController?.pushViewController(vc, animated: true)
+        self.navigationController?.pushViewController(vc, animated: true)
 //        }
     }
 
@@ -70,7 +76,7 @@ class GridSelectVC: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     */
 
