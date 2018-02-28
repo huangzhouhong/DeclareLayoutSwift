@@ -31,10 +31,10 @@ public func & (e1: [Layoutable], e2: Layoutable) -> [Layoutable] {
     return e1
 }
 
-//infix operator <-
-infix operator <-
+// infix operator <-
+infix operator <-: AssignmentPrecedence
 
-//class PropertyName<TargetType, TargetPropertyType> {
+// class PropertyName<TargetType, TargetPropertyType> {
 //    let keyPath: WritableKeyPath<TargetType, TargetPropertyType>?
 //    let method: String?
 //    init(keyPath: WritableKeyPath<TargetType, TargetPropertyType>? = nil, method: String? = nil) {
@@ -92,15 +92,15 @@ infix operator <-
 //    static var tableDelegate: PropertyName<TableElement, TableElementDelegate?> {
 //        return PropertyName<TableElement, TableElementDelegate?>(keyPath: \TableElement.delegate)
 //    }
-//}
+// }
 //
-//infix operator <-
+// infix operator <-
 //
-//protocol PropertySetterProtocol {
+// protocol PropertySetterProtocol {
 //    func setValueForTarget(_ target: Any)
-//}
+// }
 //
-//class PropertySetter<TargetType, TargetPropertyType>: PropertySetterProtocol {
+// class PropertySetter<TargetType, TargetPropertyType>: PropertySetterProtocol {
 ////    var targetKeyPath: WritableKeyPath<TargetType, TargetPropertyType>
 //    var propertyName: PropertyName<TargetType, TargetPropertyType>
 //    var value: TargetPropertyType
@@ -141,17 +141,16 @@ infix operator <-
 //            }
 //        }
 //    }
-//}
+// }
 //
-//func <- <TargetType, TargetPropertyType>(p1: PropertyName<TargetType, TargetPropertyType>, p2: TargetPropertyType) -> PropertySetterProtocol {
+// func <- <TargetType, TargetPropertyType>(p1: PropertyName<TargetType, TargetPropertyType>, p2: TargetPropertyType) -> PropertySetterProtocol {
 //    return PropertySetter<TargetType, TargetPropertyType>(propertyName: p1, value: p2)
-//}
+// }
 //
-//extension Array where Element == PropertySetterProtocol {
+// extension Array where Element == PropertySetterProtocol {
 //    func setupForTarget(_ target: Any) {
 //        for propertySetter in self {
 //            propertySetter.setValueForTarget(target)
 //        }
 //    }
-//}
-
+// }

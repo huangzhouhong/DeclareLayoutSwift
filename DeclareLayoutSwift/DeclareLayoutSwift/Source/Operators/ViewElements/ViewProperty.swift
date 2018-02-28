@@ -9,12 +9,15 @@
 import UIKit
 
 public enum ViewPropertyName {
-    case bgColor
+    case bgColor, cornerRadius
 }
 
 public class ViewProperty<TargetPropertyType>: PropertyBase<ViewPropertyName> {
     public static var bgColor: ViewProperty<UIColor?> {
         return ViewProperty<UIColor?>(.bgColor)
+    }
+    public static var cornerRadius: ViewProperty<CGFloat?> {
+        return ViewProperty<CGFloat?>(.cornerRadius)
     }
 }
 
@@ -23,6 +26,14 @@ public func <- <ViewType, TargetPropertyType>(property: ViewProperty<TargetPrope
     switch propertyName {
     case .bgColor:
         return PropertySetter<ViewElement<ViewType>>(setter: { $0.view.backgroundColor = value as? UIColor })
+    case .cornerRadius:
+        return PropertySetter<ViewElement<ViewType>>(setter: {
+            if let cornerRadius = value as? CGFloat {
+                $0.view.layer.cornerRadius = cornerRadius
+                $0.view.clipsToBounds = true
+            } else {
+                $0.view.clipsToBounds = false
+            }
+        })
     }
 }
-

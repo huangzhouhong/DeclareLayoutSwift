@@ -46,7 +46,8 @@ public class TableElement: ViewElement<UITableView>, UITableViewDataSource, UITa
     
     var delegate: TableElementDelegate?
     
-    var elementOfIndexPath: Dictionary<IndexPath, UIElement> = [:]
+//    var elementOfIndexPath: Dictionary<IndexPath, UIElement> = [:]
+    var heightForRows: Dictionary<IndexPath, CGFloat> = [:]
     
 //    override init(view: UITableView) {
 //        super.init(view: view)
@@ -60,7 +61,7 @@ public class TableElement: ViewElement<UITableView>, UITableViewDataSource, UITa
         
         view.dataSource = self
         view.delegate = self
-        propertySetters.forEach { $0.setter(self)}
+        propertySetters.forEach { $0.setter(self) }
     }
     
     // MARK: - table view data source
@@ -81,30 +82,14 @@ public class TableElement: ViewElement<UITableView>, UITableViewDataSource, UITa
             element.setup()
             element.measure(DLSize(width: tableView.frame.width, height: CGFloat.nan))
             element.hostView = contentView
-            elementOfIndexPath[indexPath] = element
+//            elementOfIndexPath[indexPath] = element
+//            let ele = elementOfIndexPath[indexPath]
+            let separatorHeight: CGFloat = 0.334
+            let elementHeight = element.desiredSize.height
+            let cellHeight = tableView.separatorStyle == .none ? elementHeight : elementHeight + separatorHeight
+            heightForRows[indexPath] = cellHeight
+            element.arrange(CGRect(x: 0, y: 0, width: tableView.frame.width, height: elementHeight))
         }
-        
-//        let grid = Grid(.columns <- [.auto(min: 50), .star(1)], .padding <- UIEdgeInsets(space: 20)) {
-//            [ViewElement {
-//                UILabel(.text <- String(indexPath.row))
-//            },
-//             ViewElement(.gridColumnIndex <- 1) {
-//                let text = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-//                let randomIndex = arc4random_uniform(UInt32(text.count))
-//                let index = text.index(text.startIndex, offsetBy: Int(randomIndex))
-        ////                let string:String = String(text[...index])
-//                let label = UILabel(.text <- String(text[...index]))
-//                label.numberOfLines = 0
-        ////                label.lineBreakMode = .byCharWrapping
-//                return label
-//            }]
-//        }
-        //
-//        grid.setup()
-//        grid.measure(DLSize(width: tableView.frame.width, height: CGFloat.nan))
-        //
-//        grid.hostView = contentView
-//        elementOfIndexPath[indexPath] = grid
         
         return cell
     }
@@ -119,11 +104,11 @@ public class TableElement: ViewElement<UITableView>, UITableViewDataSource, UITa
     
     // MARK: - 333
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let ele = elementOfIndexPath[indexPath]
-        let separatorHeight: CGFloat = 0.334
-        let elementHeight = ele!.desiredSize.height
-        return tableView.separatorStyle == .none ? elementHeight : elementHeight + separatorHeight
-//        return ele!.desiredSize.height
+//        let ele = elementOfIndexPath[indexPath]
+//        let separatorHeight: CGFloat = 0.334
+//        let elementHeight = ele!.desiredSize.height
+//        return tableView.separatorStyle == .none ? elementHeight : elementHeight + separatorHeight
+        return heightForRows[indexPath]!
     }
     
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -135,8 +120,8 @@ public class TableElement: ViewElement<UITableView>, UITableViewDataSource, UITa
     }
     
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let ele = elementOfIndexPath[indexPath]
-        ele!.arrange(cell.contentView.bounds)
+//        let ele = elementOfIndexPath[indexPath]
+//        ele!.arrange(cell.contentView.bounds)
     }
     
     public func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {

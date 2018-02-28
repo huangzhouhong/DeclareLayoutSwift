@@ -97,6 +97,7 @@ public class ViewElement<ViewType>: UIElement where ViewType: UIView {
 public typealias Label = ViewElement<UILabel>
 public typealias Button = ViewElement<UIButton>
 public typealias TextField = ViewElement<UITextField>
+public typealias View = ViewElement<UIView>
 
 // class Button: ViewElement<UIButton> {
 //    convenience init(_ propertySetters: PropertySetter<Button>...) {

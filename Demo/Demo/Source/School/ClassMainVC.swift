@@ -53,28 +53,31 @@ class ClassMainVC: SafeAreaVC, TableElementDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UIElement {
 
         let redDotSize: CGFloat = 6
-        let redDotView = UIView()
-        redDotView.backgroundColor = .red
-        redDotView.layer.cornerRadius = redDotSize / 2
-        redDotView.clipsToBounds = true
-        let redDotElement = ViewElement<UIView>(view: redDotView)
-        redDotElement.height = redDotSize
-        redDotElement.width = redDotSize
-        redDotElement.verticalAlignment = .Center
-        redDotElement.margin = Insets(10)
-        
+
+//        let redDotView = UIView()
+//        redDotView.backgroundColor = .red
+//        redDotView.layer.cornerRadius = redDotSize / 2
+//        redDotView.clipsToBounds = true
+//        let redDotElement = ViewElement<UIView>(view: redDotView)
+//        redDotElement.height = redDotSize
+//        redDotElement.width = redDotSize
+//        redDotElement.verticalAlignment = .Center
+//        redDotElement.margin = Insets(10)
+
         let showDot = indexPath.row % 2 == 0
-        redDotElement.visibility = showDot ? .Visible : .Hidden
+        let visibility: Visibility = showDot ? .Visible : .Hidden
 
         return Grid(.columns <- [.auto(), .star(1)], .margin <- Insets(8)) {
-            [redDotElement,
+            [View(.bgColor <- .red, .cornerRadius <- redDotSize / 2, .width <- redDotSize, .height <- redDotSize, .vAlign <- .Center, .margin <- Insets(10), .visibility <- visibility),
              StackPanel(.gridColumnIndex <- 1) {
                  [Grid(.columns <- [.star(1), .auto]) {
                      [Label(.text <- "今天", .fontSize <- 16, .margin <- Insets(bottom: 4)),
                       Label(.text <- "2018-01-01", .gridColumnIndex <- 1, .fontSize <- 12, .textColor <- .gray)]
                  },
                   Label(.text <- "这是一条通知消息", .fontSize <- 12, .textColor <- .gray)]
+
             }]
+
         }
 
 //        let text = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
