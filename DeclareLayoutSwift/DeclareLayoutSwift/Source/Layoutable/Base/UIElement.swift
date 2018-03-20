@@ -90,6 +90,7 @@ public class UIElement: NSObject, Layoutable {
     
     func measureOverwrite(_ availableSize: DLSize) -> CGSize {
         assert(false)
+        return CGSize.zero
     }
     
     public func arrange(_ finalRect: CGRect) {
