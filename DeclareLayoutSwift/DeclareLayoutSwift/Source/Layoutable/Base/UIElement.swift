@@ -27,15 +27,15 @@ public class UIElement: NSObject, Layoutable {
     public var padding: UIEdgeInsets?
     
     public var children: [Layoutable] = []
-    public var parent: Layoutable?
-    public var visibility: Visibility = .Visible{
-        didSet{
+    public weak var parent: Layoutable?
+    public var visibility: Visibility = .Visible {
+        didSet {
             onVisibilityChanged()
         }
     }
     public var measured: Bool = false
     
-    private var _hostView: UIView?
+    private weak var _hostView: UIView?
     var hostView: UIView? {
         get {
 //            return _hostView ?? (parent == nil ? nil : ((parent as? UIView) ?? parent!.hostView))
@@ -76,6 +76,8 @@ public class UIElement: NSObject, Layoutable {
             let availableWidth = width ?? availableSize.width
             let availableHeight = height ?? availableSize.height
             desiredSize = measureOverwrite(DLSize(width: availableWidth, height: availableHeight))
+            desiredSize.width = width ?? desiredSize.width
+            desiredSize.height = height ?? desiredSize.height
         }
         
         if !selfPadding {
@@ -100,9 +102,9 @@ public class UIElement: NSObject, Layoutable {
         assert(false)
     }
     
-    func onVisibilityChanged(){
-        for child in children{
-            child.visibility = self.visibility
+    func onVisibilityChanged() {
+        for child in children {
+            child.visibility = visibility
         }
     }
 }

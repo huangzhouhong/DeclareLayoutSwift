@@ -37,7 +37,7 @@ class StackVC: SafeAreaVC {
             HostView {
                 StackPanel {
                     [StackPanel(.orientation <- .Horizontal) {
-                        [ImageView(.image <- UIImage(named: "osx"), .vAlign <- .Center),
+                        [Image(.image <- UIImage(named: "osx"), .vAlign <- .Center),
                          Grid(.rows <- [.star(1), .star(1), .star(1)], .columns <- [.auto, .star(1, min: 100, max: nil)]) {
                              [Label(.text <- "First"),
                               Label(.text <- "Middle", .gridRowIndex <- 1),

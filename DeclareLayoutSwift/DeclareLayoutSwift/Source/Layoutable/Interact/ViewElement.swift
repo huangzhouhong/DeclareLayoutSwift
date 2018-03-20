@@ -49,23 +49,29 @@ public class ViewElement<ViewType>: UIElement where ViewType: UIView {
         self.selfPadding = view is SelfPaddingable
     }
     
-    public convenience override init() {
+//    public override init() {
+//        self.view = ViewType()
+//        super.init()
+//    }
+    
+    public convenience init(_ propertySetters: PropertySetter<ViewElement>..., configViewBlock: ((ViewType) -> Void)? = nil) {
         self.init(view: ViewType())
-    }
-    
-    public convenience init(_ propertySetters: PropertySetter<ViewElement>...) {
-        self.init()
         propertySetters.forEach { $0.setter(self) }
+        configViewBlock?(self.view)
     }
     
-    public convenience init(_ propertySetters: PropertySetter<ViewElement>..., createChild: () -> ViewType) {
-        self.init(view: createChild())
+    public convenience init(_ propertySetters: PropertySetter<ViewElement>..., createViewBlock: () -> ViewType) {
+        self.init(view: createViewBlock())
         propertySetters.forEach { $0.setter(self) }
     }
     
     override func onVisibilityChanged() {
         self.view.isHidden = visibility != .Visible
     }
+    
+//    public static func manualCreateView() -> ViewType {
+//        return ViewType()
+//    }
     
 //    public override func measure(_ availableSize: DLSize) {
 //        if view is SelfPaddingable {

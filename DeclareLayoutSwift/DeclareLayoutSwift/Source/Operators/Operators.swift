@@ -20,6 +20,10 @@ public extension NSObjectProtocol {
         initBlock(self)
         return self
     }
+    func outlet(_ param: inout Self!)->Self {
+        param = self
+        return self
+    }
 }
 
 public func & (e1: Layoutable, e2: Layoutable) -> [Layoutable] {

@@ -6,26 +6,28 @@
 //  Copyright © 2018年 com.yasoon. All rights reserved.
 //
 
-import UIKit
 import DeclareLayoutSwift
+import UIKit
 
-class QQMsgVC: SafeAreaVC, TableElementDelegate {
+class QQMsgVC: SafeAreaVC, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.tableData.count
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UIElement {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let rowData = tableData[indexPath.row]
-        return Grid(.columns <- [.auto, .star(1)],.padding <- Insets(vertical: 8, horizontal: 20)) {
-            [ImageView(.width <- 50,.image <- rowData.iconName,.margin <- Insets(right:10)) ,
+        let element = Grid(.columns <- [.auto, .star(1)], .padding <- Insets(vertical: 8, horizontal: 20)) {
+            [Image(.width <- 50, .image <- rowData.iconName, .margin <- Insets(right: 10)),
              StackPanel(.gridColumnIndex <- 1) {
-                [Grid(.columns <- [.star(1), .auto]) {
-                    [Label(.text <- rowData.name,.fontSize <- 17),
-                     Label(.gridColumnIndex <- 1, .text <- rowData.time,.fontSize <- 13,.textColor <- UIColor(white: 0.8, alpha: 1))]
-                    },
-                 Label(.text <- rowData.lastMsg,.fontSize <- 15,.textColor <- .gray)]
-                }]
+                 [Grid(.columns <- [.star(1), .auto]) {
+                     [Label(.text <- rowData.name, .fontSize <- 17),
+                      Label(.gridColumnIndex <- 1, .text <- rowData.time, .fontSize <- 13, .textColor <- UIColor(white: 0.8, alpha: 1))]
+                 },
+                 Label(.text <- rowData.lastMsg, .fontSize <- 15, .textColor <- .gray)]
+
+            }]
         }
+        return tableView.makeCell(element: element, indexPath: indexPath)
 //        return Grid(.columns <- [.auto, .star(1)],.padding <- Insets(vertical: 8, horizontal: 20)) {
 //            [ImageView(.width <- 50,.image <- self.rounedImage(name: rowData.iconName),.margin <- Insets(right:10)) ,
 //             StackPanel(.gridColumnIndex <- 1) {
@@ -37,6 +39,10 @@ class QQMsgVC: SafeAreaVC, TableElementDelegate {
 //            }]
 //        }
     }
+
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return tableView.heightForIndexPath(indexPath)
+//    }
 
 //    func rounedImage(name:String) -> UIImage {
 //        let image = UIImage(named: name)!
@@ -55,7 +61,6 @@ class QQMsgVC: SafeAreaVC, TableElementDelegate {
         var name: String
         var lastMsg: String
         var time: String
-
     }
 
     var tableData: [QQChatItem]!
@@ -67,10 +72,8 @@ class QQMsgVC: SafeAreaVC, TableElementDelegate {
 
         setupHostView {
             HostView {
-                TableElement(.delegate <- self)
+                Table(.delegate <- self, .dataSource <- self)
             }
         }
-
     }
-
 }

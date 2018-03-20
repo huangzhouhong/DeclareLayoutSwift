@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class ImageView: ViewElement<UIImageView> {
+public class Image: ViewElement<UIImageView> {
     override func measureOverwrite(_ availableSize: DLSize) -> CGSize {
         if let rawSize = self.view.image?.size {
             let width = availableSize.width
@@ -24,11 +24,5 @@ public class ImageView: ViewElement<UIImageView> {
             }
         }
         return super.measureOverwrite(availableSize)
-    }
-    
-    public convenience init(_ propertySetters: PropertySetter<ImageView>...) {
-        self.init()
-        
-        propertySetters.forEach { $0.setter(self)}
     }
 }

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA06F32B205988BE00F4A372 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA06F32A205988BE00F4A372 /* SDWebImage.framework */; };
+		CA06F32C205988BE00F4A372 /* SDWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA06F32A205988BE00F4A372 /* SDWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CA06F330205E1BA500F4A372 /* TestLeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA06F32F205E1BA500F4A372 /* TestLeak.swift */; };
 		CA3135F920307DB500BFE06A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3135F820307DB500BFE06A /* AppDelegate.swift */; };
 		CA3135FB20307DB500BFE06A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3135FA20307DB500BFE06A /* ViewController.swift */; };
 		CA3135FE20307DB500BFE06A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA3135FC20307DB500BFE06A /* Main.storyboard */; };
@@ -29,6 +32,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				CA06F32C205988BE00F4A372 /* SDWebImage.framework in Embed Frameworks */,
 				CAE2B1B0203EFCA7009FACD3 /* DeclareLayoutSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -37,6 +41,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CA06F32A205988BE00F4A372 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = ../Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
+		CA06F32F205E1BA500F4A372 /* TestLeak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLeak.swift; sourceTree = "<group>"; };
 		CA3135F520307DB500BFE06A /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA3135F820307DB500BFE06A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA3135FA20307DB500BFE06A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA06F32B205988BE00F4A372 /* SDWebImage.framework in Frameworks */,
 				CAE2B1AF203EFCA7009FACD3 /* DeclareLayoutSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -112,6 +119,7 @@
 		CA3136B920340DE300BFE06A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CA06F32A205988BE00F4A372 /* SDWebImage.framework */,
 				CAE2B1AE203C5917009FACD3 /* DeclareLayoutSwift.framework */,
 			);
 			name = Frameworks;
@@ -121,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				CAB8594A2040F1D6003BF3DC /* ClassMainVC.swift */,
+				CA06F32F205E1BA500F4A372 /* TestLeak.swift */,
 			);
 			path = School;
 			sourceTree = "<group>";
@@ -201,6 +210,7 @@
 				CAA65084203C53EE001AA91A /* GridSelectVC.swift in Sources */,
 				CAB8594D2040F31F003BF3DC /* TableVC.swift in Sources */,
 				CAB8594B2040F1D6003BF3DC /* ClassMainVC.swift in Sources */,
+				CA06F330205E1BA500F4A372 /* TestLeak.swift in Sources */,
 				CA3135FB20307DB500BFE06A /* ViewController.swift in Sources */,
 				CA3136B520340DCB00BFE06A /* GridColumnSplitVC.swift in Sources */,
 				CA3135F920307DB500BFE06A /* AppDelegate.swift in Sources */,
@@ -344,6 +354,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5379FMQDE5;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Build/iOS";
 				INFOPLIST_FILE = Demo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yasoon.Demo;
@@ -359,6 +370,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5379FMQDE5;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Build/iOS";
 				INFOPLIST_FILE = Demo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yasoon.Demo;

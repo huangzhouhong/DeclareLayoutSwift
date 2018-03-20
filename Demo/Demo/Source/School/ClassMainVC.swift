@@ -9,65 +9,45 @@
 import DeclareLayoutSwift
 import UIKit
 
-// public class CollectionElement: ViewElement<UICollectionView> {
-//
-// }
-
-class ClassMainVC: SafeAreaVC, TableElementDelegate {
+class ClassMainVC: SafeAreaVC, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, PagesDelegate {
+    var table: Table!
+    let images = ["banner1", "banner2", "banner3"]
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupRootElement {
-            TableElement(.delegate <- self)
+            Table(.delegate <- self, .dataSource <- self).outlet(&table)
         }
-//        let redDotSize: CGFloat = 6
-//        let redDotView = UIView()
-//        redDotView.backgroundColor = .red
-//        redDotView.layer.cornerRadius = redDotSize / 2
-//        redDotView.clipsToBounds = true
-//        let redDotElement = ViewElement<UIView>(view: redDotView)
-//        redDotElement.height = redDotSize
-//        redDotElement.width = redDotSize
-//        redDotElement.verticalAlignment = .Center
-//        redDotElement.margin = Insets(10)
-        //
-//        setupRootElement {
-//            Grid(.columns <- [.auto(), .star(1)]) {
-//                [redDotElement,
-//                 Label(.text <- "这是一条通知消息",.gridColumnIndex <- 1)
-//                 /*StackPanel(.gridColumnIndex <- 1) {
-//                     [Grid(.columns <- [.star(1), .auto]) {
-//                         [Label(.text <- "今天"),
-//                          Label(.text <- "2018-01-01", .gridColumnIndex <- 1)]
-//                     },
-//                      Label(.text <- "这是一条通知消息")]
-//                }*/]
-//            }
-//        }
+
+        table.header = StackPanel {
+            [Pages(.height <- 180, .pagesDelegate <- self, .scrollDuration <- TimeInterval(2.0), .loop <- true),
+             Items(.delegate <- self, .dataSource <- self, .bgColor <- .white, .height <- 300),
+             ViewElement(.bgColor <- UIColor(rgbValue: 0xf0f0f0), .height <- 8)]
+        }
     }
+
+    // MARK: - PagesDelegate
+
+    func pagesCellForItemAt(_ index: Int) -> UIElement {
+        return Image(.image <- images[index])
+    }
+
+    func pageNumberOfItems() -> Int {
+        return images.count
+    }
+
+    // MARK: - tableView
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 100
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UIElement {
-
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let redDotSize: CGFloat = 6
-
-//        let redDotView = UIView()
-//        redDotView.backgroundColor = .red
-//        redDotView.layer.cornerRadius = redDotSize / 2
-//        redDotView.clipsToBounds = true
-//        let redDotElement = ViewElement<UIView>(view: redDotView)
-//        redDotElement.height = redDotSize
-//        redDotElement.width = redDotSize
-//        redDotElement.verticalAlignment = .Center
-//        redDotElement.margin = Insets(10)
 
         let showDot = indexPath.row % 2 == 0
         let visibility: Visibility = showDot ? .Visible : .Hidden
 
-        return Grid(.columns <- [.auto(), .star(1)], .margin <- Insets(8)) {
+        let element = Grid(.columns <- [.auto(), .star(1)], .margin <- Insets(8)) {
             [View(.bgColor <- .red, .cornerRadius <- redDotSize / 2, .width <- redDotSize, .height <- redDotSize, .vAlign <- .Center, .margin <- Insets(10), .visibility <- visibility),
              StackPanel(.gridColumnIndex <- 1) {
                  [Grid(.columns <- [.star(1), .auto]) {
@@ -75,20 +55,32 @@ class ClassMainVC: SafeAreaVC, TableElementDelegate {
                       Label(.text <- "2018-01-01", .gridColumnIndex <- 1, .fontSize <- 12, .textColor <- .gray)]
                  },
                   Label(.text <- "这是一条通知消息", .fontSize <- 12, .textColor <- .gray)]
-
             }]
-
         }
 
-//        let text = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-//        let randomIndex = arc4random_uniform(UInt32(text.count))
-//        let index = text.index(text.startIndex, offsetBy: Int(randomIndex))
-//        let randString: String = String(text[...index])
-        //
-//        return Grid(.columns <- [.auto(min: 50), .star(1)], .padding <- Insets(vertical: 8, horizontal: 20)) {
-//            [Label(.text <- String(indexPath.row)),
-//             Label(.gridColumnIndex <- 1, .text <- randString, .numberOfLines <- 0)]
-//        }
+        return tableView.makeCell(element: element, indexPath: indexPath)
     }
 
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return tableView.heightForIndexPath(indexPath)
+//    }
+
+    // MARK: - collectionView
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 100
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let element = StackPanel {
+//            ImageView(.image <- "https://www.baidu.com/img/bd_logo1.png",.width <- 50,.height <- 50) &
+            Image(.image <- "osx") &
+                Label(.text <- "icon", .hAlign <- .Center)
+        }
+        return collectionView.makeCell(element: element, indexPath: indexPath)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return collectionView.sizeForItem(indexPath)
+    }
 }
