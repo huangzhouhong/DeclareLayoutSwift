@@ -16,7 +16,7 @@ import Foundation
     @objc optional func pagesDidSelectItemAt(_ index: Int)
 }
 
-public class Pages: Items, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
+public class Pages: Items,  UICollectionViewDelegate, UICollectionViewDataSource {
     
     // `delegate` operator exist in `CollectionView`
     public weak var pagesDelegate: PagesDelegate?
@@ -61,10 +61,11 @@ public class Pages: Items, UICollectionViewDelegateFlowLayout, UICollectionViewD
     
     func onTimer() {
         SpeedLog.print()
-        if let indexPath = view.indexPathsForVisibleItems.first, let delegate = pagesDelegate {
+        if let delegate = pagesDelegate {
             let count = delegate.pageNumberOfItems()
             if count > 0 {
-                let newIndex = loop ? (indexPath.row + 1) : (indexPath.row + 1) % count
+                let currentIndex = Int(view.contentOffset.x / view.frame.width);
+                let newIndex = loop ? (currentIndex + 1) : (currentIndex + 1) % count
                 scrollToIndex(newIndex, animated: true)
             }
         }
@@ -143,7 +144,7 @@ public class Pages: Items, UICollectionViewDelegateFlowLayout, UICollectionViewD
         return collectionView.makeCell(element: element, indexPath: indexPath)
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return collectionView.sizeForItem(indexPath)
-    }
+//    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return collectionView.sizeForItem(indexPath)
+//    }
 }

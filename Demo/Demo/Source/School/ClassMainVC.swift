@@ -9,7 +9,7 @@
 import DeclareLayoutSwift
 import UIKit
 
-class ClassMainVC: SafeAreaVC, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, PagesDelegate {
+class ClassMainVC: SafeAreaVC, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, PagesDelegate {
     var table: Table!
     let images = ["banner1", "banner2", "banner3"]
     override func viewDidLoad() {
@@ -58,7 +58,7 @@ class ClassMainVC: SafeAreaVC, UITableViewDataSource, UITableViewDelegate, UICol
             }]
         }
 
-        return tableView.makeCell(element: element, indexPath: indexPath)
+        return tableView.makeCell(element: element)
     }
 
 //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -80,7 +80,7 @@ class ClassMainVC: SafeAreaVC, UITableViewDataSource, UITableViewDelegate, UICol
         return collectionView.makeCell(element: element, indexPath: indexPath)
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return collectionView.sizeForItem(indexPath)
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return collectionView.sizeForItem(indexPath)
+//    }
 }

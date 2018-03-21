@@ -27,7 +27,7 @@ class QQMsgVC: SafeAreaVC, UITableViewDataSource, UITableViewDelegate {
 
             }]
         }
-        return tableView.makeCell(element: element, indexPath: indexPath)
+        return tableView.makeCell(element: element)
 //        return Grid(.columns <- [.auto, .star(1)],.padding <- Insets(vertical: 8, horizontal: 20)) {
 //            [ImageView(.width <- 50,.image <- self.rounedImage(name: rowData.iconName),.margin <- Insets(right:10)) ,
 //             StackPanel(.gridColumnIndex <- 1) {

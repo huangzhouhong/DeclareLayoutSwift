@@ -10,8 +10,28 @@ import DeclareLayoutSwift
 import UIKit
 
 class TableVC: SafeAreaVC, UITableViewDataSource, UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 10
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
+        return 3
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return HostView {
+            StackPanel(.orientation <- .Horizontal) {
+                [Label(.text <- "title"),Image(.image <- "osx")]
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -37,10 +57,10 @@ class TableVC: SafeAreaVC, UITableViewDataSource, UITableViewDelegate {
 //                return label
 //            }]
         }
-        
-        return tableView.makeCell(element: element, indexPath: indexPath)
+
+        return tableView.makeCell(element: element)
     }
-    
+
 //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //        return tableView.heightForIndexPath(indexPath)
 //    }
@@ -49,7 +69,9 @@ class TableVC: SafeAreaVC, UITableViewDataSource, UITableViewDelegate {
         super.viewDidLoad()
         setupHostView {
             HostView {
-                Table(.delegate <- self,.dataSource <- self)
+                Table(.delegate <- self, .dataSource <- self){
+                    return UITableView(frame: CGRect.zero, style: .grouped)
+                }
             }
         }
     }
@@ -63,5 +85,4 @@ class TableVC: SafeAreaVC, UITableViewDataSource, UITableViewDelegate {
         // Pass the selected object to the new view controller.
     }
     */
-
 }

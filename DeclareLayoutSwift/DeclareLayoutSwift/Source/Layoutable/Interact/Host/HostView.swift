@@ -24,6 +24,13 @@ public class HostView: UIView {
         fatalError("This class does not support NSCoding")
     }
     
+    public override func sizeThatFits(_ size: CGSize) -> CGSize {
+//        return super.sizeThatFits(size)
+        hostElement.setup()
+        hostElement.measure(DLSize(width:size.width,height:CGFloat.nan))
+        return hostElement.desiredSize
+    }
+    
     public override func layoutSubviews() {
         super.layoutSubviews()
         SpeedLog.print("start layoutSubviews")
@@ -32,7 +39,7 @@ public class HostView: UIView {
     
     func layoutElements() {
         hostElement.setup()
-        hostElement.measure(DLSize(bounds.size))
+//        hostElement.measure(DLSize(bounds.size))
         hostElement.arrange(bounds)
     }
 }

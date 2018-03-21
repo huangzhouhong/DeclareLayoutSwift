@@ -60,7 +60,7 @@ class TestLeakVC: SafeAreaVC, UITableViewDataSource, UITableViewDelegate, PagesD
         
         let element = Pages(.height <- 180, .pagesDelegate <- self, .scrollDuration <- TimeInterval(2.0), .loop <- true)
         
-        return tableView.makeCell(element: element, indexPath: indexPath)
+        return tableView.makeCell(element: element)
     }
     
 //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
