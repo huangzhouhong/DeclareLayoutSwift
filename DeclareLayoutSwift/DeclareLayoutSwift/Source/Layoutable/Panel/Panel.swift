@@ -9,13 +9,13 @@
 import UIKit
 
 public class Panel: UIElement {
-    override init() {
-        super.init()
-    }
+//    override init() {
+//        super.init()
+//    }
 
-    init(createChildren: () -> [Layoutable]) {
+    init(_ createChildren: (() -> [Layoutable])? = nil) {
         super.init()
-        children = createChildren()
+        children = createChildren?() ?? []
     }
 
 //    convenience init(_ propertySetters: PropertySetterProtocol..., createChildren: () -> [Layoutable]) {

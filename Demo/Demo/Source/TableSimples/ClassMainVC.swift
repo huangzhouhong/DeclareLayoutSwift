@@ -9,12 +9,14 @@
 import DeclareLayoutSwift
 import UIKit
 
-class ClassMainVC: SafeAreaVC, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, PagesDelegate {
+class ClassMainVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, PagesDelegate {
     var table: Table!
     let images = ["banner1", "banner2", "banner3"]
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupRootElement {
+        
+        self.view.backgroundColor = .white
+        self.view.hostElement {
             Table(.delegate <- self, .dataSource <- self).outlet(&table)
         }
 
@@ -74,7 +76,7 @@ class ClassMainVC: SafeAreaVC, UITableViewDataSource, UITableViewDelegate, UICol
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let element = StackPanel {
 //            ImageView(.image <- "https://www.baidu.com/img/bd_logo1.png",.width <- 50,.height <- 50) &
-            Image(.image <- "osx") &
+            Image(.image <- "icon1") &
                 Label(.text <- "icon", .hAlign <- .Center)
         }
         return collectionView.makeCell(element: element, indexPath: indexPath)

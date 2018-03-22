@@ -9,20 +9,20 @@
 import UIKit
 
 public class UniformGrid: Panel {
-    var columnCount:Int
-    init(columnCount:Int) {
+    var columnCount: Int
+    public init(columnCount: Int, _ propertySetters: PropertySetter<Grid>..., createChildren: (() -> [Layoutable])? = nil) {
         self.columnCount = columnCount
-        super.init()
+        super.init(createChildren)
     }
     
     override func measureOverwrite(_ availableSize: DLSize) -> CGSize {
         SpeedLog.print("availableSize:\(availableSize)")
         var result = CGSize.zero
-        if let firstChild = children.first{
+        if let firstChild = children.first {
             firstChild.measure(DLSize.nan)
             let rowCount = ceil(CGFloat(children.count) / CGFloat(columnCount))
-            result = CGSize(width:firstChild.desiredSize.width * CGFloat(columnCount),
-                          height:firstChild.desiredSize.height * rowCount)
+            result = CGSize(width: firstChild.desiredSize.width * CGFloat(columnCount),
+                            height: firstChild.desiredSize.height * rowCount)
         }
         SpeedLog.print("result:\(result)")
         return result
@@ -32,11 +32,11 @@ public class UniformGrid: Panel {
         if children.count != 0 {
             let rowCount = Int(ceil(CGFloat(children.count) / CGFloat(columnCount)))
             let cellWidth = innerRect.width / CGFloat(columnCount)
-            let cellHeight = innerRect.height / CGFloat( rowCount)
+            let cellHeight = innerRect.height / CGFloat(rowCount)
             let minX = innerRect.minX
             let minY = innerRect.minY
             
-            for (index,child) in children.enumerated(){
+            for (index, child) in children.enumerated() {
                 let columnIndex = index % columnCount
                 let rowIndex = Int(floor(CGFloat(index) / CGFloat(columnCount)))
                 let x = minX + cellWidth * CGFloat(columnIndex)

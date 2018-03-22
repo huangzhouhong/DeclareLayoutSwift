@@ -37,6 +37,7 @@ extension UICollectionView: SupportStoreProperty {
     public func makeCell(element: UIElement, indexPath: IndexPath) -> UICollectionViewCell {
         //        print("cellForItemAt:\(indexPath)")
         let cell = dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        cell.contentView.subviews.forEach { $0.removeFromSuperview() }
         cell.element = element
         
         return cell

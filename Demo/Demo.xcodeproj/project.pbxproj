@@ -9,20 +9,19 @@
 /* Begin PBXBuildFile section */
 		CA06F32B205988BE00F4A372 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA06F32A205988BE00F4A372 /* SDWebImage.framework */; };
 		CA06F32C205988BE00F4A372 /* SDWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA06F32A205988BE00F4A372 /* SDWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CA06F330205E1BA500F4A372 /* TestLeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA06F32F205E1BA500F4A372 /* TestLeak.swift */; };
 		CA3135F920307DB500BFE06A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3135F820307DB500BFE06A /* AppDelegate.swift */; };
-		CA3135FB20307DB500BFE06A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3135FA20307DB500BFE06A /* ViewController.swift */; };
 		CA3135FE20307DB500BFE06A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA3135FC20307DB500BFE06A /* Main.storyboard */; };
 		CA31360020307DB500BFE06A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA3135FF20307DB500BFE06A /* Assets.xcassets */; };
 		CA31360320307DB500BFE06A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA31360120307DB500BFE06A /* LaunchScreen.storyboard */; };
-		CA3136B520340DCB00BFE06A /* GridColumnSplitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3136AF20340DCB00BFE06A /* GridColumnSplitVC.swift */; };
-		CAA65084203C53EE001AA91A /* GridSelectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA65083203C53ED001AA91A /* GridSelectVC.swift */; };
-		CAB8594B2040F1D6003BF3DC /* ClassMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB8594A2040F1D6003BF3DC /* ClassMainVC.swift */; };
-		CAB8594D2040F31F003BF3DC /* TableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB8594C2040F31F003BF3DC /* TableVC.swift */; };
+		CA7B00E920639F8C00A71E08 /* TableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7B00E620639F8B00A71E08 /* TableVC.swift */; };
+		CA7B00EA20639F8C00A71E08 /* QQMsgVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7B00E720639F8B00A71E08 /* QQMsgVC.swift */; };
+		CA7B00EB20639F8C00A71E08 /* ClassMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7B00E820639F8B00A71E08 /* ClassMainVC.swift */; };
 		CAE2B1AF203EFCA7009FACD3 /* DeclareLayoutSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE2B1AE203C5917009FACD3 /* DeclareLayoutSwift.framework */; };
 		CAE2B1B0203EFCA7009FACD3 /* DeclareLayoutSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CAE2B1AE203C5917009FACD3 /* DeclareLayoutSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CAE2B1B3203EFD59009FACD3 /* StackVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2B1B2203EFD59009FACD3 /* StackVC.swift */; };
-		CAE2B1B7203F01BA009FACD3 /* QQMsgVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2B1B6203F01BA009FACD3 /* QQMsgVC.swift */; };
+		CAE960D9206282F200BE6304 /* StackPanelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE960D8206282F200BE6304 /* StackPanelVC.swift */; };
+		CAE960DB2063560F00BE6304 /* EntryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE960DA2063560F00BE6304 /* EntryVC.swift */; };
+		CAE960DD20637FE100BE6304 /* GridVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE960DC20637FE100BE6304 /* GridVC.swift */; };
+		CAE960DF2063864900BE6304 /* UniformGridVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE960DE2063864900BE6304 /* UniformGridVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,21 +41,20 @@
 
 /* Begin PBXFileReference section */
 		CA06F32A205988BE00F4A372 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = ../Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
-		CA06F32F205E1BA500F4A372 /* TestLeak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLeak.swift; sourceTree = "<group>"; };
 		CA3135F520307DB500BFE06A /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA3135F820307DB500BFE06A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CA3135FA20307DB500BFE06A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CA3135FD20307DB500BFE06A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CA3135FF20307DB500BFE06A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA31360220307DB500BFE06A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA31360420307DB500BFE06A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CA3136AF20340DCB00BFE06A /* GridColumnSplitVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridColumnSplitVC.swift; sourceTree = "<group>"; };
-		CAA65083203C53ED001AA91A /* GridSelectVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridSelectVC.swift; sourceTree = "<group>"; };
-		CAB8594A2040F1D6003BF3DC /* ClassMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassMainVC.swift; sourceTree = "<group>"; };
-		CAB8594C2040F31F003BF3DC /* TableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableVC.swift; sourceTree = "<group>"; };
+		CA7B00E620639F8B00A71E08 /* TableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableVC.swift; sourceTree = "<group>"; };
+		CA7B00E720639F8B00A71E08 /* QQMsgVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QQMsgVC.swift; sourceTree = "<group>"; };
+		CA7B00E820639F8B00A71E08 /* ClassMainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassMainVC.swift; sourceTree = "<group>"; };
 		CAE2B1AE203C5917009FACD3 /* DeclareLayoutSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DeclareLayoutSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CAE2B1B2203EFD59009FACD3 /* StackVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackVC.swift; sourceTree = "<group>"; };
-		CAE2B1B6203F01BA009FACD3 /* QQMsgVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QQMsgVC.swift; sourceTree = "<group>"; };
+		CAE960D8206282F200BE6304 /* StackPanelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackPanelVC.swift; sourceTree = "<group>"; };
+		CAE960DA2063560F00BE6304 /* EntryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVC.swift; sourceTree = "<group>"; };
+		CAE960DC20637FE100BE6304 /* GridVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridVC.swift; sourceTree = "<group>"; };
+		CAE960DE2063864900BE6304 /* UniformGridVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniformGridVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +92,6 @@
 			children = (
 				CA3136AC20340DCB00BFE06A /* Source */,
 				CA3135F820307DB500BFE06A /* AppDelegate.swift */,
-				CA3135FA20307DB500BFE06A /* ViewController.swift */,
 				CA3135FC20307DB500BFE06A /* Main.storyboard */,
 				CA3135FF20307DB500BFE06A /* Assets.xcassets */,
 				CA31360120307DB500BFE06A /* LaunchScreen.storyboard */,
@@ -106,12 +103,9 @@
 		CA3136AC20340DCB00BFE06A /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				CAB859492040F0A3003BF3DC /* School */,
-				CAA65083203C53ED001AA91A /* GridSelectVC.swift */,
-				CAE2B1B2203EFD59009FACD3 /* StackVC.swift */,
-				CA3136AF20340DCB00BFE06A /* GridColumnSplitVC.swift */,
-				CAE2B1B6203F01BA009FACD3 /* QQMsgVC.swift */,
-				CAB8594C2040F31F003BF3DC /* TableVC.swift */,
+				CAE960D720627F1D00BE6304 /* PanelUsage */,
+				CA7B00E520639F8B00A71E08 /* TableSimples */,
+				CAE960DA2063560F00BE6304 /* EntryVC.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -125,13 +119,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CAB859492040F0A3003BF3DC /* School */ = {
+		CA7B00E520639F8B00A71E08 /* TableSimples */ = {
 			isa = PBXGroup;
 			children = (
-				CAB8594A2040F1D6003BF3DC /* ClassMainVC.swift */,
-				CA06F32F205E1BA500F4A372 /* TestLeak.swift */,
+				CA7B00E620639F8B00A71E08 /* TableVC.swift */,
+				CA7B00E720639F8B00A71E08 /* QQMsgVC.swift */,
+				CA7B00E820639F8B00A71E08 /* ClassMainVC.swift */,
 			);
-			path = School;
+			path = TableSimples;
+			sourceTree = "<group>";
+		};
+		CAE960D720627F1D00BE6304 /* PanelUsage */ = {
+			isa = PBXGroup;
+			children = (
+				CAE960D8206282F200BE6304 /* StackPanelVC.swift */,
+				CAE960DC20637FE100BE6304 /* GridVC.swift */,
+				CAE960DE2063864900BE6304 /* UniformGridVC.swift */,
+			);
+			path = PanelUsage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,15 +212,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAA65084203C53EE001AA91A /* GridSelectVC.swift in Sources */,
-				CAB8594D2040F31F003BF3DC /* TableVC.swift in Sources */,
-				CAB8594B2040F1D6003BF3DC /* ClassMainVC.swift in Sources */,
-				CA06F330205E1BA500F4A372 /* TestLeak.swift in Sources */,
-				CA3135FB20307DB500BFE06A /* ViewController.swift in Sources */,
-				CA3136B520340DCB00BFE06A /* GridColumnSplitVC.swift in Sources */,
+				CA7B00EB20639F8C00A71E08 /* ClassMainVC.swift in Sources */,
+				CAE960DF2063864900BE6304 /* UniformGridVC.swift in Sources */,
+				CA7B00EA20639F8C00A71E08 /* QQMsgVC.swift in Sources */,
+				CAE960DB2063560F00BE6304 /* EntryVC.swift in Sources */,
+				CAE960DD20637FE100BE6304 /* GridVC.swift in Sources */,
+				CA7B00E920639F8C00A71E08 /* TableVC.swift in Sources */,
 				CA3135F920307DB500BFE06A /* AppDelegate.swift in Sources */,
-				CAE2B1B7203F01BA009FACD3 /* QQMsgVC.swift in Sources */,
-				CAE2B1B3203EFD59009FACD3 /* StackVC.swift in Sources */,
+				CAE960D9206282F200BE6304 /* StackPanelVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

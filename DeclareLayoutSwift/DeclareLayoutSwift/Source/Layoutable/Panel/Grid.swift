@@ -36,9 +36,9 @@ public class Grid: Panel {
     var rows: [Definition]!
     var columns: [Definition]!
     
-    public init(_ propertySetters: PropertySetter<Grid>..., createChildren: () -> [Layoutable]) {
-        super.init(createChildren: createChildren)
-        propertySetters.forEach { $0.setter(self)}
+    public init(_ propertySetters: PropertySetter<Grid>..., createChildren: (() -> [Layoutable])? = nil) {
+        super.init(createChildren)
+        propertySetters.forEach { $0.setter(self) }
     }
     
     private var childrenForColumns: [[Layoutable]]!
@@ -67,7 +67,7 @@ public class Grid: Panel {
         return c ?? 0
     }
     
-    override public func setup() {
+    public override func setup() {
         super.setup()
         
         rows = rows ?? [.Star(star: 1, min: nil, max: nil)]
@@ -165,26 +165,26 @@ public class Grid: Panel {
         let cellWidth = cellRect.width
         let cellHeight = cellRect.height
         
-        var childWidth: CGFloat = cellWidth  // if .Stretch
+        var childWidth: CGFloat = cellWidth // if .Stretch
         var childHeight: CGFloat = cellHeight
         if childHorizontalAlign != .Stretch {
 //            if let explicitWidth = child.width {
 //                childWidth = explicitWidth
 //            } else {
-                if !child.measured {
-                    child.measure(DLSize(width: cellWidth,height: cellHeight))
-                }
-                childWidth = child.desiredSize.width
+            if !child.measured {
+                child.measure(DLSize(width: cellWidth, height: cellHeight))
+            }
+            childWidth = child.desiredSize.width
 //            }
         }
         if childVerticalAlign != .Stretch {
 //            if let explicitHeight = child.height {
 //                childHeight = explicitHeight
 //            } else {
-                if !child.measured {
-                    child.measure(DLSize(width: cellWidth,height: cellHeight))
-                }
-                childHeight = child.desiredSize.height
+            if !child.measured {
+                child.measure(DLSize(width: cellWidth, height: cellHeight))
+            }
+            childHeight = child.desiredSize.height
 //            }
         }
         
@@ -236,8 +236,8 @@ public class Grid: Panel {
 //                if let explicitWidth = child.width{
 //                    return explicitWidth
 //                }else{
-                    child.measure(DLSize(width:space,height:CGFloat.nan))
-                    return child.desiredSize.width
+                child.measure(DLSize(width: space, height: CGFloat.nan))
+                return child.desiredSize.width
 //                }
             })
         
@@ -246,9 +246,9 @@ public class Grid: Panel {
 //                if let explicitHeight = child.height{
 //                    return explicitHeight
 //                }else{
-                    let columnIndex = Grid.getColumn(ele: child)
-                    child.measure(DLSize(width: columnWidths[columnIndex], height: space))
-                    return child.desiredSize.height
+                let columnIndex = Grid.getColumn(ele: child)
+                child.measure(DLSize(width: columnWidths[columnIndex], height: space))
+                return child.desiredSize.height
 //                }
             })
         

@@ -8,38 +8,56 @@
 
 import UIKit
 
-open class SafeAreaVC: UIViewController {
-//    var hostView:DeclareLayoutView!
-    
-    override open func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    public func setupHostView(createHost:()->HostView){
-        self.hostView=createHost()
+extension UIView {
+    public func hostElement(_ element: UIElement) {
+        let hostView = HostView(element:element)
+        self.addSubview(hostView)
+//        self.backgroundColor = .white
         
-        self.view.addSubview(hostView)
-        self.view.backgroundColor = .white
-        
-        let margin = self.view.safeAreaLayoutGuide
+        let margin = self.safeAreaLayoutGuide
         hostView.topAnchor.constraint(equalTo: margin.topAnchor).isActive = true
         hostView.leftAnchor.constraint(equalTo: margin.leftAnchor).isActive = true
         hostView.rightAnchor.constraint(equalTo: margin.rightAnchor).isActive = true
         hostView.bottomAnchor.constraint(equalTo: margin.bottomAnchor).isActive = true
         hostView.translatesAutoresizingMaskIntoConstraints = false
-        
-//        hostView.backgroundColor = .white
     }
     
-    public func setupRootElement(createRootElement:()->UIElement){
-        setupHostView {
-            HostView{
-                createRootElement()
-            }
-        }
+    public func hostElement(createElementBlock: () -> UIElement) {
+        self.hostElement(createElementBlock())
     }
-    
-    
-    
-    var hostView:HostView!
 }
+
+//open class SafeAreaVC: UIViewController {
+////    var hostView:DeclareLayoutView!
+//    
+//    open override func viewDidLoad() {
+//        super.viewDidLoad()
+//    }
+//    
+//    public func setupHostView(createHost: () -> HostView) {
+//        self.hostView = createHost()
+//        
+//        self.view.addSubview(self.hostView)
+//        self.view.backgroundColor = .white
+//        
+//        let margin = self.view.safeAreaLayoutGuide
+//        hostView.topAnchor.constraint(equalTo: margin.topAnchor).isActive = true
+//        hostView.leftAnchor.constraint(equalTo: margin.leftAnchor).isActive = true
+//        hostView.rightAnchor.constraint(equalTo: margin.rightAnchor).isActive = true
+//        hostView.bottomAnchor.constraint(equalTo: margin.bottomAnchor).isActive = true
+//        hostView.translatesAutoresizingMaskIntoConstraints = false
+//        
+////        hostView.backgroundColor = .white
+//    }
+//    
+//    public func setupRootElement(createRootElement: () -> UIElement) {
+//        self.setupHostView {
+//            HostView {
+//                createRootElement()
+//            }
+//        }
+//    }
+//    
+//    var hostView: HostView!
+//}
+
