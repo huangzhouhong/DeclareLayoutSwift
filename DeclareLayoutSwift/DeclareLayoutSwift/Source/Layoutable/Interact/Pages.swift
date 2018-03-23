@@ -16,8 +16,7 @@ import Foundation
     @objc optional func pagesDidSelectItemAt(_ index: Int)
 }
 
-public class Pages: Items,  UICollectionViewDelegate, UICollectionViewDataSource {
-    
+public class Pages: Items, UICollectionViewDelegate, UICollectionViewDataSource {
     // `delegate` operator exist in `CollectionView`
     public weak var pagesDelegate: PagesDelegate?
     
@@ -50,6 +49,17 @@ public class Pages: Items,  UICollectionViewDelegate, UICollectionViewDataSource
         configViewBlock?(view)
     }
     
+    override func measureOverwrite(_ availableSize: DLSize) -> CGSize {
+        if let pagesDelegate = pagesDelegate {
+            if pagesDelegate.pageNumberOfItems() > 0 {
+                let element = pagesDelegate.pagesCellForItemAt(0)
+                element.measure(DLSize(width: availableSize.width, height: CGFloat.nan))
+                return element.desiredSize
+            }
+        }
+        return CGSize.zero
+    }
+    
     func createTimer() {
         timer?.invalidate()
         if scrollDuration > 0 {
@@ -64,7 +74,7 @@ public class Pages: Items,  UICollectionViewDelegate, UICollectionViewDataSource
         if let delegate = pagesDelegate {
             let count = delegate.pageNumberOfItems()
             if count > 0 {
-                let currentIndex = Int(view.contentOffset.x / view.frame.width);
+                let currentIndex = Int(view.contentOffset.x / view.frame.width)
                 let newIndex = loop ? (currentIndex + 1) : (currentIndex + 1) % count
                 scrollToIndex(newIndex, animated: true)
             }
@@ -109,7 +119,6 @@ public class Pages: Items,  UICollectionViewDelegate, UICollectionViewDataSource
             } else if Int(currentPageIndex) == pageCount + 1 {
                 scrollToIndex(1)
             }
-            
         }
     }
     

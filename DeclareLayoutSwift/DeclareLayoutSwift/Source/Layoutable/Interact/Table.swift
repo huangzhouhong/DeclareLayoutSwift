@@ -11,7 +11,10 @@ import UIKit
 public class Table: ViewElement<UITableView> {
     public var header: UIElement? {
         didSet {
-            self.createTableHeaderView(width: self.view.frame.width)
+            let width = self.view.frame.width
+            if width > 0 {
+                self.createTableHeaderView(width: self.view.frame.width)
+            }
         }
     }
 

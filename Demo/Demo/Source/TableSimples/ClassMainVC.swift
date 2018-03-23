@@ -21,8 +21,12 @@ class ClassMainVC: UIViewController, UITableViewDataSource, UITableViewDelegate,
         }
 
         table.header = StackPanel {
-            [Pages(.height <- 180, .pagesDelegate <- self, .scrollDuration <- TimeInterval(2.0), .loop <- true),
-             Items(.delegate <- self, .dataSource <- self, .bgColor <- .white, .height <- 300),
+            [Pages(.pagesDelegate <- self, .scrollDuration <- TimeInterval(2.0), .loop <- true),
+             Items(.delegate <- self, .dataSource <- self, .bgColor <- .white, .margin <- Insets(vertical: 10, horizontal: 20)){
+                view in
+                let layout = view.collectionViewLayout as! UICollectionViewFlowLayout
+                layout.minimumInteritemSpacing = 0
+                },
              ViewElement(.bgColor <- UIColor(rgbValue: 0xf0f0f0), .height <- 8)]
         }
     }
@@ -63,26 +67,19 @@ class ClassMainVC: UIViewController, UITableViewDataSource, UITableViewDelegate,
         return tableView.makeCell(element: element)
     }
 
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return tableView.heightForIndexPath(indexPath)
-//    }
-
     // MARK: - collectionView
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 100
+        return 8
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let element = StackPanel {
+        SpeedLog.print(indexPath)
+        let element = StackPanel(.width <- collectionView.frame.width / 4) {
 //            ImageView(.image <- "https://www.baidu.com/img/bd_logo1.png",.width <- 50,.height <- 50) &
-            Image(.image <- "icon1") &
+            Image(.image <- "icon1", .hAlign <- .Center) &
                 Label(.text <- "icon", .hAlign <- .Center)
         }
         return collectionView.makeCell(element: element, indexPath: indexPath)
     }
-
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return collectionView.sizeForItem(indexPath)
-//    }
 }

@@ -16,50 +16,10 @@ public class StackPanel: Panel {
     
     var orientation: Orientation = .Vertical
     
-//    override func setup() {
-//        setupForGrid()
-//        super.setup()
-//    }
-//
-//    func setupForGrid(){
-//        let defs = [Definition](repeating:.Auto(min: nil, max: nil),count:children.count)
-//        let vertical = orientation == .Vertical
-//        let handler = vertical ? Grid.setRow : Grid.setColumn
-//        if vertical {
-//            rows=defs
-//        }else{
-//            columns=defs
-//        }
-//
-//        for (index,child) in children.enumerated(){
-//            handler(child,index)
-//        }
-//
-    ////        if orientation == .Vertical{
-    ////            rows=defs
-    ////            for child in
-    ////        }else{
-    ////            columns=defs
-    ////        }
-//    }
     public init(_ propertySetters: PropertySetter<StackPanel>..., createChildren: (() -> [Layoutable])? = nil) {
         super.init(createChildren)
         propertySetters.forEach { $0.setter(self) }
     }
-    
-//    override public func measure(_ availableSize: DLSize) {
-//        var width:CGFloat=0
-//        var height:CGFloat=0
-//
-//        let processChildSize = orientation == .Vertical ? processChildSizeVertical : processChildSizeHorizontal
-//
-//        for child in children{
-//            child.measure(DLSize.nan)
-//            processChildSize(child, &width, &height)
-//        }
-//
-//        desiredSize = CGSize(width: width, height: height)
-//    }
     
     override func measureOverwrite(_ availableSize: DLSize) -> CGSize {
         var width: CGFloat = 0
@@ -119,14 +79,6 @@ public class StackPanel: Panel {
         }
     }
     
-//    public override func arrange(_ finalRect: CGRect) {
-//        if orientation == .Vertical {
-//            arrangeVertical(finalRect)
-//        } else {
-//            arrangeHorizontal(finalRect)
-//        }
-//    }
-    
     func arrangeVertical(_ finalRect: CGRect) {
         assert(orientation == .Vertical)
         
@@ -136,25 +88,25 @@ public class StackPanel: Panel {
             let childAlign = child.horizontalAlignment ?? .Stretch
             var childWidth = width
             if childAlign != .Stretch {
-                if let explictWidth = child.width {
-                    childWidth = explictWidth
-                } else {
-                    if !child.measured {
-                        child.measure(DLSize(width: CGFloat.nan, height: CGFloat.nan))
-                    }
-                    childWidth = child.desiredSize.width
+//                if let explictWidth = child.width {
+//                    childWidth = explictWidth
+//                } else {
+                if !child.measured {
+                    child.measure(DLSize(width: CGFloat.nan, height: CGFloat.nan))
                 }
+                childWidth = child.desiredSize.width
+//                }
             }
             
             var childHeight: CGFloat
-            if let explictHeight = child.height {
-                childHeight = explictHeight
-            } else {
-                if !child.measured {
-                    child.measure(DLSize(width: childWidth, height: CGFloat.nan))
-                }
-                childHeight = child.desiredSize.height
+//            if let explictHeight = child.height {
+//                childHeight = explictHeight + (child.margin?.vSpace ?? 0)
+//            } else {
+            if !child.measured {
+                child.measure(DLSize(width: childWidth, height: CGFloat.nan))
             }
+            childHeight = child.desiredSize.height
+//            }
             
             var x = finalRect.minX
             switch childAlign {
@@ -181,25 +133,25 @@ public class StackPanel: Panel {
             
             var childHeight = height
             if childAlign != .Stretch {
-                if let explictHeight = child.height {
-                    childHeight = explictHeight
-                } else {
-                    if !child.measured {
-                        child.measure(DLSize(width: CGFloat.nan, height: CGFloat.nan))
-                    }
-                    childHeight = child.desiredSize.height
+//                if let explictHeight = child.height {
+//                    childHeight = explictHeight
+//                } else {
+                if !child.measured {
+                    child.measure(DLSize(width: CGFloat.nan, height: CGFloat.nan))
                 }
+                childHeight = child.desiredSize.height
+//                }
             }
             
-            var childWidth: CGFloat
-            if let explictWidth = child.width {
-                childWidth = explictWidth
-            } else {
-                if !child.measured {
-                    child.measure(DLSize(width: CGFloat.nan, height: childHeight))
-                }
-                childWidth = child.desiredSize.width
+//            var childWidth: CGFloat
+//            if let explictWidth = child.width {
+//                childWidth = explictWidth
+//            } else {
+            if !child.measured {
+                child.measure(DLSize(width: CGFloat.nan, height: childHeight))
             }
+            let childWidth = child.desiredSize.width
+//            }
             
 //            let childWidth = child.width ?? child.desiredSize.width
 //            var childHeight = child.height ?? child.desiredSize.height
