@@ -15,7 +15,7 @@ class GridVC: UIViewController {
 
         self.view.backgroundColor = .white
         self.view.hostElement {
-            Grid(.rows <- [.auto, .auto, .auto], .columns <- [.auto, .star(1, min: 100, max: nil)]) {
+            Grid(.rows <- [.auto, .auto, .auto], .columns <- [.auto, .star(1)]) {
                 [Label(.text <- "First"),
                  Label(.text <- "Middle", .gridRowIndex <- 1),
                  Label(.text <- "Last", .gridRowIndex <- 2),

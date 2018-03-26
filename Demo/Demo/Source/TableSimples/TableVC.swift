@@ -34,8 +34,10 @@ class TableVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let randString = generateRandomString()
 
         let element = Grid(.columns <- [.auto, .star(1)], .padding <- Insets(vertical: 8, horizontal: 20)) {
-            [Label(.text <- String(indexPath.row), .bgColor <- .red, .width <- 30, .height <- 30, .cornerRadius <- 15, .textColor <- .white, .vAlign <- .Center, .textAlignment <- .center),
-             Label(.gridColumnIndex <- 1, .margin <- Insets(left: 8), .text <- randString, .numberOfLines <- 0)]
+            [
+                Label(.text <- String(indexPath.row + 1), .bgColor <- .red, .width <- 30, .height <- 30, .vAlign <- .Center, .cornerRadius <- 15, .textColor <- .white, .textAlignment <- .center),
+                Label(.gridColumnIndex <- 1, .margin <- Insets(left: 8), .text <- randString, .numberOfLines <- 0),
+            ]
         }
 
         return tableView.makeCell(element: element)

@@ -26,7 +26,7 @@ class EntryVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                [Entry(vc: StackPanelVC.self, title: "StackPanel", description: "a vertical StackPanel.\nStackPanel support vertical and horizontal layout"),
                 Entry(vc: GridVC.self, title: "Grid", description: "Grid Defines a flexible grid area that consists of columns and rows, and split space like a table.Rows and columns can be auto(fit children content),fixed(explicit value),and star(Split by proportion)"),
                 Entry(vc: UniformGridVC.self, title: "UniformGrid", description: "Split into the same size cells")]),
-        EntryCategory(title: "Table Simples", entrys:
+           EntryCategory(title: "Table Simples", entrys:
             [Entry(vc: TableVC.self, title: "Simple Table 1", description: "No need to return cell height,just host element in cell(use `UITableView.makeCell`).Apple's auto sizing will work"),
              Entry(vc: QQMsgVC.self, title: "Simple Table 2", description: "same"),
              Entry(vc: EntryVC.self, title: "Table with section header", description: "Provide a `HostView` that host `UIElement`,height is automatic calulate."),
@@ -68,7 +68,7 @@ class EntryVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let title = categorys[section].title
         return HostView {
             StackPanel(.orientation <- .Horizontal) {
-                [Image(.image <- "icon1",.margin <- Insets(8)),
+                [Image(.image <- "icon1", .margin <- Insets(8)),
                  Label(.text <- title)]
             }
         }
@@ -77,8 +77,15 @@ class EntryVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let entry = categorys[indexPath.section].entrys[indexPath.row]
-        let vc = entry.vc.init()
-        vc.title = entry.title
-        navigationController?.pushViewController(vc, animated: true)
+        let cls = entry.vc
+        if cls == EntryVC.self {
+            let alert = UIAlertController(title: nil, message: "current view controller", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
+        } else {
+            let vc = entry.vc.init()
+            vc.title = entry.title
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }

@@ -10,7 +10,7 @@ import DeclareLayoutSwift
 import UIKit
 
 class ClassMainVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, PagesDelegate {
-    var table: Table!
+    weak var table: Table!
     let images = ["banner1", "banner2", "banner3"]
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,12 +21,8 @@ class ClassMainVC: UIViewController, UITableViewDataSource, UITableViewDelegate,
         }
 
         table.header = StackPanel {
-            [Pages(.pagesDelegate <- self, .scrollDuration <- TimeInterval(2.0), .loop <- true),
-             Items(.delegate <- self, .dataSource <- self, .bgColor <- .white, .margin <- Insets(vertical: 10, horizontal: 20)){
-                view in
-                let layout = view.collectionViewLayout as! UICollectionViewFlowLayout
-                layout.minimumInteritemSpacing = 0
-                },
+            [Pages(.pagesDelegate <- self, .scrollDuration <- TimeInterval(2.0), .loop <- false),
+             Items(.delegate <- self, .dataSource <- self, .bgColor <- .white,.itemMinHSpacing <- 0, .margin <- Insets(vertical: 10, horizontal: 20)),
              ViewElement(.bgColor <- UIColor(rgbValue: 0xf0f0f0), .height <- 8)]
         }
     }
