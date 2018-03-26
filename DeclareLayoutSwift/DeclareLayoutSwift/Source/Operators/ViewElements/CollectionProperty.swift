@@ -11,6 +11,7 @@ import UIKit
 public enum CollectionPropertyName {
     case delegate
     case dataSource
+    case itemMinHSpacing
 }
 
 public class CollectionProperty<TargetPropertyType>: PropertyBase<CollectionPropertyName> {
@@ -21,6 +22,10 @@ public class CollectionProperty<TargetPropertyType>: PropertyBase<CollectionProp
     public static var dataSource: CollectionProperty<UICollectionViewDataSource> {
         return CollectionProperty<UICollectionViewDataSource>(.dataSource)
     }
+
+    public static var itemMinHSpacing: CollectionProperty<CGFloat> {
+        return CollectionProperty<CGFloat>(.itemMinHSpacing)
+    }
 }
 
 public func <- <TargetType, TargetPropertyType, ViewType>(property: CollectionProperty<TargetPropertyType>, value: TargetPropertyType) -> PropertySetter<TargetType> where TargetType: ViewElement<ViewType>, ViewType: UICollectionView {
@@ -30,6 +35,15 @@ public func <- <TargetType, TargetPropertyType, ViewType>(property: CollectionPr
         return PropertySetter<TargetType>(setter: { $0.view.delegate = value as? UICollectionViewDelegate })
     case .dataSource:
         return PropertySetter<TargetType>(setter: { $0.view.dataSource = value as? UICollectionViewDataSource })
+    case .itemMinHSpacing:
+        return PropertySetter<TargetType>(setter: {
+            target in
+            if let layout = target.view.collectionViewLayout as? UICollectionViewFlowLayout {
+                layout.minimumInteritemSpacing = (value as? CGFloat) ?? 0
+            } else {
+                fatalError("not a UICollectionViewFlowLayout, can not set minimumInteritemSpacing")
+            }
+        })
     }
 }
 

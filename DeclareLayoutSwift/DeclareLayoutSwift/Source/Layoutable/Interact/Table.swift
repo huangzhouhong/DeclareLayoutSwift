@@ -21,12 +21,13 @@ public class Table: ViewElement<UITableView> {
     func createTableHeaderView(width: CGFloat) {
         if let header = header {
             let headerView = UIView()
+            headerView.translatesAutoresizingMaskIntoConstraints = false
             header.setup()
             header.measure(DLSize(width: width, height: CGFloat.nan))
             header.hostView = headerView
             let rect = CGRect(x: 0, y: 0, width: width, height: header.desiredSize.height)
-            header.arrange(rect)
             headerView.frame = rect
+            header.arrange(rect)
             self.view.tableHeaderView = headerView
         }
     }

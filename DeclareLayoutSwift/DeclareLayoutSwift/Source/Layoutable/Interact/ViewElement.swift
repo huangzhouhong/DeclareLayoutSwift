@@ -24,7 +24,7 @@ extension UIButton: SelfPaddingable {
 }
 
 public class ViewElement<ViewType>: UIElement where ViewType: UIView {
-    let view: ViewType
+    public let view: ViewType
     public override var padding: UIEdgeInsets? {
         get {
             if let selfPaddingable = view as? SelfPaddingable {
@@ -49,11 +49,6 @@ public class ViewElement<ViewType>: UIElement where ViewType: UIView {
         self.selfPadding = view is SelfPaddingable
     }
     
-//    public override init() {
-//        self.view = ViewType()
-//        super.init()
-//    }
-    
     public convenience init(_ propertySetters: PropertySetter<ViewElement>..., configViewBlock: ((ViewType) -> Void)? = nil) {
         self.init(view: ViewType())
         propertySetters.forEach { $0.setter(self) }
@@ -68,22 +63,6 @@ public class ViewElement<ViewType>: UIElement where ViewType: UIView {
     override func onVisibilityChanged() {
         self.view.isHidden = visibility != .Visible
     }
-    
-//    public static func manualCreateView() -> ViewType {
-//        return ViewType()
-//    }
-    
-//    public override func measure(_ availableSize: DLSize) {
-//        if view is SelfPaddingable {
-//            var availableSize = availableSize
-//            availableSize.removeInset(inset: margin)
-//            desiredSize = measureOverwrite(availableSize)
-//            desiredSize.addInset(inset: margin)
-//            measured = true
-//        } else {
-//            return super.measure(availableSize)
-//        }
-//    }
     
     override func measureOverwrite(_ availableSize: DLSize) -> CGSize {
         return self.view.sizeThatFits(CGSize(availableSize))
@@ -104,17 +83,5 @@ public typealias Label = ViewElement<UILabel>
 public typealias Button = ViewElement<UIButton>
 public typealias TextField = ViewElement<UITextField>
 public typealias View = ViewElement<UIView>
+public typealias PageControl = ViewElement<UIPageControl>
 
-// class Button: ViewElement<UIButton> {
-//    convenience init(_ propertySetters: PropertySetter<Button>...) {
-//        self.init()
-//        propertySetters.forEach { $0.setter(self) }
-//    }
-// }
-//
-// class Label: ViewElement<UILabel> {
-//    convenience init(_ propertySetters: PropertySetter<Label>...) {
-//        self.init()
-//        propertySetters.forEach { $0.setter(self) }
-//    }
-// }

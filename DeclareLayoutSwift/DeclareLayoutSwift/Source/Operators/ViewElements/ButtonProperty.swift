@@ -9,12 +9,16 @@
 import UIKit
 
 public enum ButtonPropertyName {
-    case title
+    case title, image
 }
 
 public class ButtonProperty<TargetPropertyType>: PropertyBase<ButtonPropertyName> {
     public static var title: ButtonProperty<String?> {
         return ButtonProperty<String?>(.title)
+    }
+    // `Any` since support multiple type
+    public static var image: ButtonProperty<Any?> {
+        return ButtonProperty<Any?>(.image)
     }
 }
 
@@ -23,5 +27,14 @@ public func <- <TargetType, TargetPropertyType>(property: ButtonProperty<TargetP
     switch propertyName {
     case .title:
         return PropertySetter<TargetType>(setter: { $0.view.setTitle(value as? String, for: .normal) })
+    case .image:
+        return PropertySetter<TargetType>(setter: {
+            if let string = value as? String {
+                $0.view.setImage(UIImage(named: string), for: .normal)
+            } else {
+                $0.view.setImage(value as? UIImage, for: .normal)
+            }
+        })
     }
+
 }

@@ -13,12 +13,22 @@ import Foundation
 //    @objc optional func pages(_ pages: Pages, didSelectItemAt index: Int)
     func pagesCellForItemAt(_ index: Int) -> UIElement
     func pageNumberOfItems() -> Int
+    @objc optional func pagesCurrentIndexChanged(_ index: Int)
     @objc optional func pagesDidSelectItemAt(_ index: Int)
 }
 
 public class Pages: Items, UICollectionViewDelegate, UICollectionViewDataSource {
     // `delegate` operator exist in `CollectionView`
-    public weak var pagesDelegate: PagesDelegate?
+    public weak var pagesDelegate: PagesDelegate? {
+        didSet {
+            setupPageControl(currentIndex: 0)
+        }
+    }
+    public weak var pageControl: PageControl? {
+        didSet {
+            setupPageControl(currentIndex: 0)
+        }
+    }
     
     // >0 will enable auto scroll
     public var scrollDuration: TimeInterval = 0 {
@@ -103,22 +113,38 @@ public class Pages: Items, UICollectionViewDelegate, UICollectionViewDataSource 
 //        SpeedLog.print("scrollToIndex:\(index)")
     }
     
+    func setupPageControl(currentIndex: Int) {
+        guard let pageCount = pagesDelegate?.pageNumberOfItems(), let pageControl = pageControl else {
+            return
+        }
+        
+        pageControl.view.numberOfPages = pageCount
+        pageControl.view.currentPage = currentIndex
+    }
+    
+    func currentPageIndexChanged(_ currentPageIndex: Int) {
+        SpeedLog.print()
+        let dataSourceIndex = mapToDatasourceIndexFrom(pageIndex: currentPageIndex)
+        pagesDelegate?.pagesCurrentIndexChanged?(dataSourceIndex)
+        setupPageControl(currentIndex: currentPageIndex)
+    }
+    
     // MARK: - UIScrollViewDelegate
     
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard loop else {
-            return
-        }
         guard let pageCount = pagesDelegate?.pageNumberOfItems() else {
             return
         }
         let currentPageIndex = scrollView.contentOffset.x / view.frame.width
         if currentPageIndex == CGFloat(Int(currentPageIndex)) {
-            if currentPageIndex == 0 {
-                scrollToIndex(pageCount)
-            } else if Int(currentPageIndex) == pageCount + 1 {
-                scrollToIndex(1)
+            if loop{
+                if currentPageIndex == 0 {
+                    scrollToIndex(pageCount)
+                } else if Int(currentPageIndex) == pageCount + 1 {
+                    scrollToIndex(1)
+                }
             }
+            currentPageIndexChanged(Int(currentPageIndex))
         }
     }
     
@@ -153,7 +179,8 @@ public class Pages: Items, UICollectionViewDelegate, UICollectionViewDataSource 
         return collectionView.makeCell(element: element, indexPath: indexPath)
     }
     
-//    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return collectionView.sizeForItem(indexPath)
-//    }
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let index = mapToDatasourceIndexFrom(pageIndex: indexPath.row)
+        pagesDelegate?.pagesDidSelectItemAt?(index)
+    }
 }

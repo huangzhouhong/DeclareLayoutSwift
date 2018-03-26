@@ -9,7 +9,7 @@
 import UIKit
 
 public enum PagesPropertyName {
-    case pagesDelegate, scrollDuration, loop
+    case pagesDelegate, pageControl, scrollDuration, loop
 }
 
 public class PagesProperty<TargetPropertyType>: PropertyBase<PagesPropertyName> {
@@ -23,6 +23,9 @@ public class PagesProperty<TargetPropertyType>: PropertyBase<PagesPropertyName> 
     public static var loop: PagesProperty<Bool> {
         return PagesProperty<Bool>(.loop)
     }
+    public static var pageControl: PagesProperty<PageControl> {
+        return PagesProperty<PageControl>(.pageControl)
+    }
 }
 
 public func <- <TargetType, TargetPropertyType>(property: PagesProperty<TargetPropertyType>, value: TargetPropertyType) -> PropertySetter<TargetType> where TargetType: Pages {
@@ -34,5 +37,7 @@ public func <- <TargetType, TargetPropertyType>(property: PagesProperty<TargetPr
         return PropertySetter<TargetType>(setter: { $0.scrollDuration = value as! TimeInterval })
     case .loop:
         return PropertySetter<TargetType>(setter: { $0.loop = value as! Bool })
+    case .pageControl:
+         return PropertySetter<TargetType>(setter: { $0.pageControl = value as? PageControl })
     }
 }

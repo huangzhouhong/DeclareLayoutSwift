@@ -10,6 +10,7 @@ import UIKit
 public enum TablePropertyName {
     case delegate
     case dataSource
+    case header
 }
 
 public class TableProperty<TargetPropertyType>: PropertyBase<TablePropertyName> {
@@ -20,6 +21,10 @@ public class TableProperty<TargetPropertyType>: PropertyBase<TablePropertyName> 
     public static var dataSource: TableProperty<UITableViewDataSource> {
         return TableProperty<UITableViewDataSource>(.dataSource)
     }
+
+    public static var header: TableProperty<UIElement?> {
+        return TableProperty<UIElement?>(.header)
+    }
 }
 
 public func <- <TargetType, TargetPropertyType, ViewType>(property: TableProperty<TargetPropertyType>, value: TargetPropertyType) -> PropertySetter<TargetType> where TargetType: ViewElement<ViewType>, ViewType: UITableView {
@@ -29,6 +34,13 @@ public func <- <TargetType, TargetPropertyType, ViewType>(property: TablePropert
         return PropertySetter<TargetType>(setter: { $0.view.delegate = value as? UITableViewDelegate })
     case .dataSource:
         return PropertySetter<TargetType>(setter: { $0.view.dataSource = value as? UITableViewDataSource })
+    case .header:
+        return PropertySetter<TargetType>(setter: {
+            target in
+            if let t = target as? Table{
+                t.header = value as? UIElement
+            }
+        })
     }
 }
 
