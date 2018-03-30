@@ -9,6 +9,7 @@ iOS UI制作有两种：代码手写UI，xib或StoryBoard（使用Interface Buil
 IB也有缺点
 要在下面这个例子中插多一行，就要修改原有的约束
 ![示例1](https://upload-images.jianshu.io/upload_images/6719795-3f013514ff623b6a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 再比如，自定义一个`UITableViewCell`，需要这些步骤：
 - 在Storyboard中或创建xib文件
 - 做好布局和约束
@@ -23,7 +24,7 @@ IB也有缺点
 - 布局容器动态计算`children`（子元素）的大小和位置。**不使用**约束（constraints），而是最终设置`UIView`的`frame`。因为约束也是自动计算位置和大小，转换为约束相当于Auto Layout又要再计算一次。
 - 界面可以看是一棵树，通过嵌套不同的容器，组合不同的规则，来声明界面如何展示
 ## 简单示例
-```
+```swift
 StackPanel {
 [Image(.image <- "icon1", .hAlign <- .Center),
 Label(.text <- "Name", .hAlign <- .Center)]
@@ -39,7 +40,7 @@ Label(.text <- "Name", .hAlign <- .Center)]
 - `.hAlign <- .Center`指定元素水平居中。在`StackPanel`中，竖直排列默认拉伸水平方向，水平排列默认拉伸竖直方向。在这个例子中，如果不指定水平对齐方式，图片会充满水平方向（.Stretch），然后保持图片原有比例。
 
 ## 示例2 Table
-```
+```swift
 class TableVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 override func viewDidLoad() {
 super.viewDidLoad()
