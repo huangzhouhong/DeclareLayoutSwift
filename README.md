@@ -26,8 +26,8 @@ IB也有缺点
 ## 简单示例
 ```swift
 StackPanel {
-[Image(.image <- "icon1", .hAlign <- .Center),
-Label(.text <- "Name", .hAlign <- .Center)]
+     [Image(.image <- "icon1", .hAlign <- .Center),
+     Label(.text <- "Name", .hAlign <- .Center)]
 }
 ```
 
@@ -42,36 +42,36 @@ Label(.text <- "Name", .hAlign <- .Center)]
 ## 示例2 Table
 ```swift
 class TableVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
-override func viewDidLoad() {
-super.viewDidLoad()
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-self.view.backgroundColor = .white
-self.view.hostElement {
-Table(.delegate <- self, .dataSource <- self)
-}
-}
+        self.view.backgroundColor = .white
+        self.view.hostElement {
+            Table(.delegate <- self, .dataSource <- self)
+        }
+    }
 
-private func generateRandomString() -> String {
-let text = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-let randomIndex = arc4random_uniform(UInt32(text.count))
-let index = text.index(text.startIndex, offsetBy: Int(randomIndex))
-return String(text[...index])
-}
+    private func generateRandomString() -> String {
+        let text = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let randomIndex = arc4random_uniform(UInt32(text.count))
+        let index = text.index(text.startIndex, offsetBy: Int(randomIndex))
+        return String(text[...index])
+    }
 
-func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-return 100
-}
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 100
+    }
 
-func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-let randString = generateRandomString()
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let randString = generateRandomString()
 
-let element = Grid(.columns <- [.auto, .star(1)], .padding <- Insets(vertical: 8, horizontal: 20)) {
-[Label(.text <- String(indexPath.row)),
-Label(.gridColumnIndex <- 1, .margin <- Insets(left: 8), .text <- randString, .numberOfLines <- 0)]
-}
+        let element = Grid(.columns <- [.auto, .star(1)], .padding <- Insets(vertical: 8, horizontal: 20)) {
+            [Label(.text <- String(indexPath.row)),
+             Label(.gridColumnIndex <- 1, .margin <- Insets(left: 8), .text <- randString, .numberOfLines <- 0)]
+        }
 
-return tableView.makeCell(element: element)
-}
+        return tableView.makeCell(element: element)
+    }
 }
 ```
 
