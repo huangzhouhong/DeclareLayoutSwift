@@ -89,8 +89,24 @@ public class ViewElement<ViewType>: UIElement where ViewType: UIView {
     
 }
 
+public class PaddingTextField: UITextField, SelfPaddingable {
+    public var padding: UIEdgeInsets?
+    public override func textRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.innerRectWithInset(self.padding)
+    }
+    
+    public override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.innerRectWithInset(self.padding)
+    }
+    
+    public override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.innerRectWithInset(self.padding)
+    }
+    
+}
+
 public typealias View = ViewElement<UIView>
 public typealias Label = ViewElement<UILabel>
 public typealias Button = ViewElement<UIButton>
-public typealias TextField = ViewElement<UITextField>
+public typealias TextField = ViewElement<PaddingTextField>
 public typealias PageControl = ViewElement<UIPageControl>

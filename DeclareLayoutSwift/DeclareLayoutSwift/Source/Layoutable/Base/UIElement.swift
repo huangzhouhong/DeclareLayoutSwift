@@ -36,7 +36,7 @@ public class UIElement: NSObject, Layoutable {
     public var measured: Bool = false
     
     private weak var _hostView: UIView?
-    var hostView: UIView? {
+    public var hostView: UIView? {
         get {
 //            return _hostView ?? (parent == nil ? nil : ((parent as? UIView) ?? parent!.hostView))
             return _hostView ?? ((parent as? UIView) ?? (parent as? UIElement)?.hostView)

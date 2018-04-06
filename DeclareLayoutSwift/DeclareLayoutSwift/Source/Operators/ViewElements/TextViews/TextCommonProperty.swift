@@ -34,7 +34,7 @@ public class TextCommonProperty<TargetPropertyType>: PropertyBase<TextCommonProp
     }
 }
 
-public func <- <TargetType, TargetPropertyType>(property: TextCommonProperty<TargetPropertyType>, value: TargetPropertyType) -> PropertySetter<TargetType> where TargetType: Label {
+public func <- <TargetType, TargetPropertyType, ViewType>(property: TextCommonProperty<TargetPropertyType>, value: TargetPropertyType) -> PropertySetter<TargetType> where TargetType: ViewElement<ViewType>, ViewType: UILabel {
     let propertyName = property.propertyName
     switch propertyName {
     case .text:
@@ -50,7 +50,7 @@ public func <- <TargetType, TargetPropertyType>(property: TextCommonProperty<Tar
     }
 }
 
-public func <- <TargetType, TargetPropertyType>(property: TextCommonProperty<TargetPropertyType>, value: TargetPropertyType) -> PropertySetter<TargetType> where TargetType: TextField {
+public func <- <TargetType, TargetPropertyType, ViewType>(property: TextCommonProperty<TargetPropertyType>, value: TargetPropertyType) -> PropertySetter<TargetType> where TargetType: ViewElement<ViewType>, ViewType: UITextField {
     let propertyName = property.propertyName
     switch propertyName {
     case .text:

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CA06F32B205988BE00F4A372 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA06F32A205988BE00F4A372 /* SDWebImage.framework */; };
 		CA06F32C205988BE00F4A372 /* SDWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA06F32A205988BE00F4A372 /* SDWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CA24152020777FA00062CAC4 /* ControlEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA24151F20777FA00062CAC4 /* ControlEventVC.swift */; };
 		CA3135F920307DB500BFE06A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3135F820307DB500BFE06A /* AppDelegate.swift */; };
 		CA3135FE20307DB500BFE06A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA3135FC20307DB500BFE06A /* Main.storyboard */; };
 		CA31360020307DB500BFE06A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA3135FF20307DB500BFE06A /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		CA06F32A205988BE00F4A372 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = ../Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
+		CA24151F20777FA00062CAC4 /* ControlEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlEventVC.swift; sourceTree = "<group>"; };
 		CA3135F520307DB500BFE06A /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA3135F820307DB500BFE06A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA3135FD20307DB500BFE06A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -70,6 +72,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CA24151E20777F960062CAC4 /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				CA24151F20777FA00062CAC4 /* ControlEventVC.swift */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
 		CA3135EC20307DB500BFE06A = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +115,7 @@
 			children = (
 				CAE960D720627F1D00BE6304 /* PanelUsage */,
 				CA7B00E520639F8B00A71E08 /* TableSimples */,
+				CA24151E20777F960062CAC4 /* Event */,
 				CAE960DA2063560F00BE6304 /* EntryVC.swift */,
 			);
 			path = Source;
@@ -219,6 +230,7 @@
 				CAE960DD20637FE100BE6304 /* GridVC.swift in Sources */,
 				CA7B00E920639F8C00A71E08 /* TableVC.swift in Sources */,
 				CA3135F920307DB500BFE06A /* AppDelegate.swift in Sources */,
+				CA24152020777FA00062CAC4 /* ControlEventVC.swift in Sources */,
 				CAE960D9206282F200BE6304 /* StackPanelVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

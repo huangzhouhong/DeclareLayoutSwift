@@ -17,7 +17,7 @@ struct EntryCategory {
 struct Entry {
     var vc: UIViewController.Type
     var title: String
-    var description: String
+    var description: String?
 }
 
 class EntryVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -28,9 +28,12 @@ class EntryVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 Entry(vc: UniformGridVC.self, title: "UniformGrid", description: "Split into the same size cells")]),
            EntryCategory(title: "Table Simples", entrys:
             [Entry(vc: TableVC.self, title: "Simple Table 1", description: "No need to return cell height,just host element in cell(use `UITableView.makeCell`).Apple's auto sizing will work"),
-             Entry(vc: QQMsgVC.self, title: "Simple Table 2", description: "same"),
-             Entry(vc: EntryVC.self, title: "Table with section header", description: "Provide a `HostView` that host `UIElement`,height is automatic calulate."),
-             Entry(vc: ClassMainVC.self, title: "Items", description: "666")])]
+             Entry(vc: QQMsgVC.self, title: "Simple Table 2", description: "same as above"),
+             Entry(vc: EntryVC.self, title: "Table with section header", description: "Provide a `HostView` that host `UIElement`,header height is automatic calulate."),
+             Entry(vc: ClassMainVC.self, title: "Items", description: nil)]),
+           EntryCategory(title: "Event Simples", entrys:
+            [Entry(vc: ControlEventVC.self, title: "Control Event Simple", description: nil)]
+        )]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +61,7 @@ class EntryVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             [Label(.text <- entry.title),
              Label(.text <- "Will show:\(entry.vc)", .fontSize <- 13, .textColor <- grayFontColor),
              View(.height <- 0.5, .bgColor <- .gray),
-             Label(.text <- "Description:\(entry.description)", .numberOfLines <- 0, .fontSize <- 13, .textColor <- grayFontColor)]
+             Label(.text <- "Description:\(entry.description ?? "None")", .numberOfLines <- 0, .fontSize <- 13, .textColor <- grayFontColor)]
         }
 
         return tableView.makeCell(element: element)
