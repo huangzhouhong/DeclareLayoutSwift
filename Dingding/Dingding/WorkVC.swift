@@ -71,7 +71,6 @@ class WorkVC: UIViewController, UITableViewDataSource {
         
         self.setupModel()
         
-        // 上一篇实现
         self.createTitleView(title: "XXX有限工司")
         
         self.view.hostElement {

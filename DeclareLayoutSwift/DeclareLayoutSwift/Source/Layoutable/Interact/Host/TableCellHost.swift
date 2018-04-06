@@ -6,7 +6,7 @@
 //  Copyright © 2018年 com.yasoon. All rights reserved.
 //
 
-class UITableViewCellStore {
+class UITableViewCellStore :NSObject {
     var element: UIElement?
     weak var tableView: UITableView?
     
@@ -52,26 +52,16 @@ class UITableViewCellStore {
 }
 
 extension UITableViewCell: SupportStoreProperty {
-    struct PropertyNames {
-        static var store = "store"
-    }
-    
     private var store: UITableViewCellStore {
-        if let s = getValue(key: &PropertyNames.store) as? UITableViewCellStore {
-            return s
-        } else {
-            let s = UITableViewCellStore()
-            setValue(key: &PropertyNames.store, value: s)
-            return s
-        }
+        return getExtStore()
     }
     
     public var element: UIElement? {
         set {
-            self.store.element = newValue
+            store.element = newValue
         }
         get {
-            return self.store.element
+            return store.element
         }
     }
     

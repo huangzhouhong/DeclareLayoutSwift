@@ -62,6 +62,15 @@ public class ViewElement<ViewType>: UIElement where ViewType: UIView {
     
     override func onVisibilityChanged() {
         self.view.isHidden = visibility != .Visible
+        
+    }
+    
+    public override func setup() {
+        super.setup()
+        
+        if view is UIControl {
+            (self as! SupportControlEvent).setupControlEvent()
+        }
     }
     
     override func measureOverwrite(_ availableSize: DLSize) -> CGSize {
@@ -77,11 +86,11 @@ public class ViewElement<ViewType>: UIElement where ViewType: UIView {
             self.view.frame = innerRect
         }
     }
+    
 }
 
+public typealias View = ViewElement<UIView>
 public typealias Label = ViewElement<UILabel>
 public typealias Button = ViewElement<UIButton>
 public typealias TextField = ViewElement<UITextField>
-public typealias View = ViewElement<UIView>
 public typealias PageControl = ViewElement<UIPageControl>
-

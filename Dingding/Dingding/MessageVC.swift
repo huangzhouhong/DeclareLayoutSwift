@@ -16,11 +16,15 @@ class MessageVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
         self.createTitleView(title: "钉钉")
 
-        self.view.hostElement {
+        self.hostElement {
             Table(.delegate <- self, .dataSource <- self)
         }
     }
-    
+
+    @objc func onTap() {
+        SpeedLog.print("ok")
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 100
     }

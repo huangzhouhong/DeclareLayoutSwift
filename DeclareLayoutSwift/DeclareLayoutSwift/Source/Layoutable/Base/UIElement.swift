@@ -46,6 +46,16 @@ public class UIElement: NSObject, Layoutable {
         }
     }
     
+    private weak var _context: AnyObject?
+    public var context: AnyObject? {
+        get {
+            return _context ?? parent?.context
+        }
+        set {
+            _context = newValue
+        }
+    }
+    
     /* self padding means this element will calculate padding itself,
      such as label and button*/
     var selfPadding: Bool = false

@@ -9,7 +9,7 @@
 import UIKit
 
 public enum LayoutablePropertyName {
-    case horizontalAlignment, verticalAlignment, width, height, margin, padding, visibility, gridRowIndex, gridColumnIndex
+    case horizontalAlignment, verticalAlignment, width, height, margin, padding, visibility, gridRowIndex, gridColumnIndex, context
 }
 
 public class LayoutableProperty<TargetPropertyType>: PropertyBase<LayoutablePropertyName> {
@@ -39,6 +39,9 @@ public class LayoutableProperty<TargetPropertyType>: PropertyBase<LayoutableProp
     }
     public static var gridColumnIndex: LayoutableProperty<Int> {
         return LayoutableProperty<Int>(.gridColumnIndex)
+    }
+    public static var context: LayoutableProperty<AnyObject> {
+        return LayoutableProperty<AnyObject>(.context)
     }
 
     // for short
@@ -70,6 +73,8 @@ public func <- <TargetType, TargetPropertyType>(property: LayoutableProperty<Tar
     case .gridColumnIndex:
         return PropertySetter<TargetType>(setter: { Grid.setColumn(ele: $0, column: value as! Int) })
     case .visibility:
-        return PropertySetter<TargetType>(setter: {$0.visibility = value as! Visibility})
+        return PropertySetter<TargetType>(setter: { $0.visibility = value as! Visibility })
+    case .context:
+        return PropertySetter<TargetType>(setter: { $0.context = value as AnyObject  })
     }
 }
