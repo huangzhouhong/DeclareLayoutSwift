@@ -14,15 +14,15 @@ class MessageVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.createTitleView(title: "钉钉")
+        self.createTitleView(title: "钉钉") {
+            [Button(.image <- #imageLiteral(resourceName: "Msg_nav1"), .touchDown <- "onTap"),
+             Button(.image <- #imageLiteral(resourceName: "Msg_nav2"), .margin <- Insets(vertical: 0, horizontal: 20), .touchDown <- "onTap"),
+             Button(.image <- #imageLiteral(resourceName: "Msg_nav3"), .touchDown <- #selector(self.onTap))]
+        }
 
         self.hostElement {
             Table(.delegate <- self, .dataSource <- self)
         }
-    }
-
-    @objc func onTap() {
-        SpeedLog.print("ok")
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -41,5 +41,9 @@ class MessageVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }]
         }
         return tableView.makeCell(element: element)
+    }
+
+    @objc func onTap() {
+        SpeedLog.print("ok")
     }
 }

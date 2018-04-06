@@ -10,20 +10,32 @@ import DeclareLayoutSwift
 import UIKit
 
 extension UIViewController {
-    func createTitleView(title: String) {
+    func createTitleView(title: String, createButtons: (() -> [Layoutable])? = nil) {
         self.navigationController?.navigationBar.barTintColor = .white
-        
+
         let titleView = HostView {
             Grid(.columns <- [.star(1), .auto], .context <- self) {
                 [Label(.text <- title, .fontSize <- 20),
-                 StackPanel(.gridColumnIndex <- 1, .orientation <- .Horizontal) {
-                     [Button(.image <- #imageLiteral(resourceName: "Msg_nav1"), .touchDown <- "onTap"),
-                      Button(.image <- #imageLiteral(resourceName: "Msg_nav2"), .margin <- Insets(vertical: 0, horizontal: 20), .touchDown <- "onTap"),
-                      Button(.image <- #imageLiteral(resourceName: "Msg_nav3"), .touchDown <- "onTap"),
-                    ]
-                }]
+                 StackPanel(.gridColumnIndex <- 1, .orientation <- .Horizontal, createChildren: createButtons)]
             }
         }
         self.navigationItem.titleView = titleView
     }
+
+//    func createTitleView(title: String) {
+//        self.navigationController?.navigationBar.barTintColor = .white
+    //
+//        let titleView = HostView {
+//            Grid(.columns <- [.star(1), .auto], .context <- self) {
+//                [Label(.text <- title, .fontSize <- 20),
+//                 StackPanel(.gridColumnIndex <- 1, .orientation <- .Horizontal) {
+//                     [Button(.image <- #imageLiteral(resourceName: "Msg_nav1"), .touchDown <- "onTap"),
+//                      Button(.image <- #imageLiteral(resourceName: "Msg_nav2"), .margin <- Insets(vertical: 0, horizontal: 20), .touchDown <- "onTap"),
+//                      Button(.image <- #imageLiteral(resourceName: "Msg_nav3"), .touchDown <- "onTap"),
+//                    ]
+//                }]
+//            }
+//        }
+//        self.navigationItem.titleView = titleView
+//    }
 }

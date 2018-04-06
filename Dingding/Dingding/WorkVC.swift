@@ -71,10 +71,16 @@ class WorkVC: UIViewController, UITableViewDataSource {
         
         self.setupModel()
         
-        self.createTitleView(title: "XXX有限工司")
+        self.createTitleView(title: "XXX有限工司"){
+            [Button(.image <- #imageLiteral(resourceName: "Msg_nav2"), .margin <- Insets(right:20), .touchDown <- "onTap"),
+             Button(.image <- #imageLiteral(resourceName: "Msg_nav3"), .touchDown <- #selector(self.onTap))]
+        }
         
         self.view.hostElement {
-            Table(.dataSource <- self, .margin <- Insets(vertical: 0, horizontal: 12), .header <- createHeader())
+            Table(.dataSource <- self, .margin <- Insets(vertical: 0, horizontal: 12), .header <- createHeader()){
+                table in
+                table.showsVerticalScrollIndicator = false
+            }
         }
     }
     
@@ -124,5 +130,9 @@ class WorkVC: UIViewController, UITableViewDataSource {
         }
         
         return tableView.makeCell(element: element)
+    }
+    
+    @objc func onTap() {
+        SpeedLog.print("ok")
     }
 }
