@@ -28,7 +28,7 @@ public class CollectionProperty<TargetPropertyType>: PropertyBase<CollectionProp
     }
 }
 
-public func <- <TargetType, TargetPropertyType, ViewType>(property: CollectionProperty<TargetPropertyType>, value: TargetPropertyType) -> PropertySetter<TargetType> where TargetType: ViewElement<ViewType>, ViewType: UICollectionView {
+public func <- <TargetType, TargetPropertyType, ViewType>(property: CollectionProperty<TargetPropertyType>, value: TargetPropertyType?) -> PropertySetter<TargetType> where TargetType: ViewElement<ViewType>, ViewType: UICollectionView {
     let propertyName = property.propertyName
     switch propertyName {
     case .delegate:

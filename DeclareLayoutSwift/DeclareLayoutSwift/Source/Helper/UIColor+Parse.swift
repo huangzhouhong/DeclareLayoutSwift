@@ -30,4 +30,16 @@ public extension UIColor {
         
         self.init(rgbValue: Int(rgbValue))
     }
+    
+    public static func parse(_ obj: Any?) -> UIColor? {
+        if let color = obj as? UIColor {
+            return color
+        } else if let colorString = obj as? String {
+            return UIColor(colorString: colorString)
+        } else if let colorValue = obj as? Int {
+            return UIColor(rgbValue: colorValue)
+        } else {
+            return nil
+        }
+    }
 }

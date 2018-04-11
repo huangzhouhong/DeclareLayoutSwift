@@ -25,7 +25,7 @@ extension ViewElement: SupportControlEvent where ViewType: UIControl {
     
     func setupControlEvent() {
         if let target = context {
-            SpeedLog.print(target)
+//            SpeedLog.print(target)
             for (event, selector) in store.addSelectorForEvents {
                 if target.responds(to: selector) {
                     view.addTarget(target, action: selector, for: UIControlEvents(rawValue: event))

@@ -22,12 +22,12 @@ public class TableProperty<TargetPropertyType>: PropertyBase<TablePropertyName> 
         return TableProperty<UITableViewDataSource>(.dataSource)
     }
 
-    public static var header: TableProperty<UIElement?> {
-        return TableProperty<UIElement?>(.header)
+    public static var header: TableProperty<UIElement> {
+        return TableProperty<UIElement>(.header)
     }
 }
 
-public func <- <TargetType, TargetPropertyType, ViewType>(property: TableProperty<TargetPropertyType>, value: TargetPropertyType) -> PropertySetter<TargetType> where TargetType: ViewElement<ViewType>, ViewType: UITableView {
+public func <- <TargetType, TargetPropertyType, ViewType>(property: TableProperty<TargetPropertyType>, value: TargetPropertyType?) -> PropertySetter<TargetType> where TargetType: ViewElement<ViewType>, ViewType: UITableView {
     let propertyName = property.propertyName
     switch propertyName {
     case .delegate:
@@ -35,12 +35,7 @@ public func <- <TargetType, TargetPropertyType, ViewType>(property: TablePropert
     case .dataSource:
         return PropertySetter<TargetType>(setter: { $0.view.dataSource = value as? UITableViewDataSource })
     case .header:
-        return PropertySetter<TargetType>(setter: {
-            target in
-            if let t = target as? Table{
-                t.header = value as? UIElement
-            }
-        })
+        return PropertySetter<TargetType>(setter: { ($0 as? Table)?.header = value as? UIElement })
     }
 }
 

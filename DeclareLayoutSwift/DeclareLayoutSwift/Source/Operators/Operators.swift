@@ -20,7 +20,11 @@ public extension NSObjectProtocol {
         initBlock(self)
         return self
     }
-    func outlet(_ param: inout Self!)->Self {
+    func outlet(_ param: inout Self)->Self {
+        param = self
+        return self
+    }
+    func outlet(_ param: inout Self?)->Self {
         param = self
         return self
     }

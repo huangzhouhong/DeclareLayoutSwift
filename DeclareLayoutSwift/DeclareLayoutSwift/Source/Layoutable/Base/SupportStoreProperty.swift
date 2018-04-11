@@ -18,7 +18,7 @@ public extension SupportStoreProperty {
     }
 }
 
-private var associationKey: UInt8 = 0
+private var defaultStoreKey: UInt8 = 0
 
 public extension SupportStoreProperty {
     func getExtStore<StoreType>(key: UnsafeRawPointer? = nil) -> StoreType where StoreType: NSObject {
@@ -34,7 +34,7 @@ public extension SupportStoreProperty {
                 return s
             }
         } else {
-            let s = getValue(key: &associationKey)
+            let s = getValue(key: &defaultStoreKey)
             if s != nil {
                 if let s = s as? StoreType {
                     return s
@@ -43,7 +43,7 @@ public extension SupportStoreProperty {
                 }
             } else {
                 let s = StoreType()
-                setValue(key: &associationKey, value: s)
+                setValue(key: &defaultStoreKey, value: s)
                 return s
             }
         }

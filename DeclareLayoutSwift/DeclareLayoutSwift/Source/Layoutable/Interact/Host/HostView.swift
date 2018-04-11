@@ -27,7 +27,11 @@ public class HostView: UIView {
     public override func sizeThatFits(_ size: CGSize) -> CGSize {
 //        return super.sizeThatFits(size)
         hostElement.setup()
-        hostElement.measure(DLSize(width: size.width, height: CGFloat.nan))
+        let availableWidth = size.width > 0 ? size.width : CGFloat.nan
+        let availableHeight = size.height > 0 ? size.height : CGFloat.nan
+        hostElement.measure(DLSize(width: availableWidth, height: availableHeight))
+//        hostElement.measure(DLSize(width: size.width, height: CGFloat.nan))
+//        hostElement.measure(DLSize(size))
         return hostElement.desiredSize
     }
     

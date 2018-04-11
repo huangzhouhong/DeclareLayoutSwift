@@ -36,8 +36,8 @@ public class Grid: Panel {
     var rows: [Definition]!
     var columns: [Definition]!
     
-    public init(_ propertySetters: PropertySetter<Grid>..., createChildren: (() -> [Layoutable])? = nil) {
-        super.init(createChildren)
+    public init(_ propertySetters: PropertySetter<Grid>...) {
+        super.init()
         propertySetters.forEach { $0.setter(self) }
     }
     
@@ -268,10 +268,11 @@ public class Grid: Panel {
             case .Fixed(let space):
                 splitResult[index] = space
             case .Auto(let minSpace, let maxSpace):
-                let remainSpace = calcRemainSpace()
+//                let remainSpace = calcRemainSpace()
                 let maxDesiredSpace =
                     childrenForDefIndex(index).map({ child -> CGFloat in
-                        var desiredSpace = measureChild(child, remainSpace)
+//                        var desiredSpace = measureChild(child, remainSpace)
+                        var desiredSpace = measureChild(child, CGFloat.nan)
                         if let minSpace = minSpace {
                             desiredSpace = max(minSpace, desiredSpace)
                         }

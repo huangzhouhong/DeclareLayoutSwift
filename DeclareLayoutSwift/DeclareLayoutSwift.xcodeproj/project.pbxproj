@@ -28,6 +28,8 @@
 		CA3136A720340C3100BFE06A /* ObservableArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA31368D20340C3100BFE06A /* ObservableArray.swift */; };
 		CA3136A820340C3100BFE06A /* Insets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA31368E20340C3100BFE06A /* Insets.swift */; };
 		CA3136AB20340CAD00BFE06A /* SpeedLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3136AA20340CAD00BFE06A /* SpeedLog.swift */; };
+		CAC092FF207C6DBC00809891 /* DisposeBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC092FE207C6DBC00809891 /* DisposeBag.swift */; };
+		CAC09302207CDA9100809891 /* PanelProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC09301207CDA9100809891 /* PanelProperty.swift */; };
 		CAD917282059850500A8CFA5 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD917272059850500A8CFA5 /* SDWebImage.framework */; };
 		CAE960D020620BC000BE6304 /* HostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE960CF20620BC000BE6304 /* HostView.swift */; };
 		CAE960D220620BDC00BE6304 /* TableCellHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE960D120620BDC00BE6304 /* TableCellHost.swift */; };
@@ -73,6 +75,8 @@
 		CA31368D20340C3100BFE06A /* ObservableArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableArray.swift; sourceTree = "<group>"; };
 		CA31368E20340C3100BFE06A /* Insets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Insets.swift; sourceTree = "<group>"; };
 		CA3136AA20340CAD00BFE06A /* SpeedLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedLog.swift; sourceTree = "<group>"; };
+		CAC092FE207C6DBC00809891 /* DisposeBag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisposeBag.swift; sourceTree = "<group>"; };
+		CAC09301207CDA9100809891 /* PanelProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelProperty.swift; sourceTree = "<group>"; };
 		CAD917272059850500A8CFA5 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = ../Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
 		CAE960CF20620BC000BE6304 /* HostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostView.swift; sourceTree = "<group>"; };
 		CAE960D120620BDC00BE6304 /* TableCellHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellHost.swift; sourceTree = "<group>"; };
@@ -199,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				CAF7EEAA2073CFDF00B85328 /* SupportStoreProperty.swift */,
+				CAC092FE207C6DBC00809891 /* DisposeBag.swift */,
 				CA31368820340C3100BFE06A /* Layoutable.swift */,
 				CA31368920340C3100BFE06A /* UIElement.swift */,
 			);
@@ -259,6 +264,7 @@
 		CAF919C5203F1BCB0087ACFA /* Panel */ = {
 			isa = PBXGroup;
 			children = (
+				CAC09301207CDA9100809891 /* PanelProperty.swift */,
 				CAF919C6203F1BCB0087ACFA /* StackPanelProperty.swift */,
 				CAF919C7203F1BCB0087ACFA /* GridProperty.swift */,
 			);
@@ -328,7 +334,7 @@
 		CA31365720340C0100BFE06A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = com.yasoon;
 				TargetAttributes = {
 					CA31365F20340C0100BFE06A = {
@@ -372,6 +378,7 @@
 				CA160CD52077EB7900BAF309 /* Items.swift in Sources */,
 				CAF919D8203F1BCB0087ACFA /* TableProperty.swift in Sources */,
 				CAF919D4203F1BCB0087ACFA /* StackPanelProperty.swift in Sources */,
+				CAC09302207CDA9100809891 /* PanelProperty.swift in Sources */,
 				CAE960D020620BC000BE6304 /* HostView.swift in Sources */,
 				CA24151920773BA00062CAC4 /* UIView+HostElment.swift in Sources */,
 				CAE960D420620C2500BE6304 /* CollectionCellHost.swift in Sources */,
@@ -383,6 +390,7 @@
 				CAF919D5203F1BCB0087ACFA /* GridProperty.swift in Sources */,
 				CA3136A420340C3100BFE06A /* UIElement.swift in Sources */,
 				CA3136A320340C3100BFE06A /* Layoutable.swift in Sources */,
+				CAC092FF207C6DBC00809891 /* DisposeBag.swift in Sources */,
 				CA160CD62077EB7900BAF309 /* Image.swift in Sources */,
 				CA31369020340C3100BFE06A /* Grid.swift in Sources */,
 				CA24151D20774E750062CAC4 /* ControlProperty.swift in Sources */,
@@ -427,6 +435,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -434,6 +443,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -487,6 +497,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -494,6 +505,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

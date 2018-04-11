@@ -13,8 +13,8 @@ public enum ViewPropertyName {
 }
 
 public class ViewProperty<TargetPropertyType>: PropertyBase<ViewPropertyName> {
-    public static var bgColor: ViewProperty<UIColor?> {
-        return ViewProperty<UIColor?>(.bgColor)
+    public static var bgColor: ViewProperty<Any?> {
+        return ViewProperty<Any?>(.bgColor)
     }
 
     public static var cornerRadius: ViewProperty<CGFloat?> {
@@ -26,7 +26,7 @@ public func <- <TargetType, TargetPropertyType, ViewType>(property: ViewProperty
     let propertyName = property.propertyName
     switch propertyName {
     case .bgColor:
-        return PropertySetter<TargetType>(setter: { $0.view.backgroundColor = value as? UIColor })
+        return PropertySetter<TargetType>(setter: { $0.view.backgroundColor = UIColor.parse(value) })
     case .cornerRadius:
         return PropertySetter<TargetType>(setter: {
             if let cornerRadius = value as? CGFloat {

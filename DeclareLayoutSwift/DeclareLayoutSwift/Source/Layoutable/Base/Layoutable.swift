@@ -23,7 +23,7 @@ public protocol Layoutable: class, SupportStoreProperty {
     var margin: UIEdgeInsets? { get set }
     var padding: UIEdgeInsets? { get set }
 
-    var children: [Layoutable] { get set }
+//    var children: [Layoutable] { get set }
     var parent: Layoutable? { get set }
     var context: AnyObject? { get set }
     var visibility: Visibility { get set }

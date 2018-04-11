@@ -9,20 +9,24 @@
 import UIKit
 
 public class Panel: UIElement {
-//    override init() {
-//        super.init()
-//    }
+    public var children: [Layoutable] = []
 
-    init(_ createChildren: (() -> [Layoutable])? = nil) {
-        super.init()
-        children = createChildren?() ?? []
+    public override func setup() {
+        for child in children {
+            child.parent = self
+            child.setup()
+        }
+        super.setup()
     }
 
-//    convenience init(_ propertySetters: PropertySetterProtocol..., createChildren: () -> [Layoutable]) {
-//        self.init(createChildren: createChildren)
-//        propertySetters.setupForTarget(self)
-//        //        for propertySetter in propertySetters {
-//        //            propertySetter.setValueForTarget(self)
-//        //        }
-//    }
+    override func onVisibilityChanged() {
+        for child in children {
+            child.visibility = visibility
+        }
+    }
+
+    public subscript(children: Layoutable...) -> Panel {
+        self.children = children
+        return self
+    }
 }

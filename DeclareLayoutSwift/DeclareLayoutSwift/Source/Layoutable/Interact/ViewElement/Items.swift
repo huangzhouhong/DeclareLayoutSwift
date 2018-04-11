@@ -12,7 +12,7 @@ public class Items: ViewElement<UICollectionView> {
     public init(_ propertySetters: PropertySetter<Items>...,
                 configViewBlock: ((UICollectionView) -> Void)? = nil) {
         let layout = UICollectionViewFlowLayout()
-        layout.estimatedItemSize = CGSize(width: 50, height: 50)
+        layout.estimatedItemSize = CGSize(width: 1, height: 1)
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
 
@@ -31,8 +31,8 @@ public class Items: ViewElement<UICollectionView> {
                 self.view.frame = CGRect(x: 0, y: 0, width: availableSize.width, height: maxSpace)
                 self.view.layoutIfNeeded()
                 return self.view.contentSize
-            } else if layout.scrollDirection == .horizontal {
-                self.view.frame = CGRect(x: 0, y: 0, width: maxSpace, height: maxSpace)
+            } else if layout.scrollDirection == .horizontal && availableSize.height > 0 {
+                self.view.frame = CGRect(x: 0, y: 0, width: maxSpace, height: availableSize.height)
                 self.view.layoutIfNeeded()
                 return self.view.contentSize
 //                if let firstElement = firstElement {

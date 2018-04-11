@@ -13,6 +13,7 @@ import Foundation
 //    @objc optional func pages(_ pages: Pages, didSelectItemAt index: Int)
     func pagesCellForItemAt(_ index: Int) -> UIElement
     func pageNumberOfItems() -> Int
+    @objc optional func pagesDidScroll(offset: CGFloat)
     @objc optional func pagesCurrentIndexChanged(_ index: Int)
     @objc optional func pagesDidSelectItemAt(_ index: Int)
 }
@@ -146,6 +147,7 @@ public class Pages: Items, UICollectionViewDelegate, UICollectionViewDataSource 
             }
             currentPageIndexChanged(Int(currentPageIndex))
         }
+        pagesDelegate?.pagesDidScroll?(offset: scrollView.contentOffset.x)
     }
     
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {

@@ -16,8 +16,8 @@ public class StackPanel: Panel {
     
     var orientation: Orientation = .Vertical
     
-    public init(_ propertySetters: PropertySetter<StackPanel>..., createChildren: (() -> [Layoutable])? = nil) {
-        super.init(createChildren)
+    public init(_ propertySetters: PropertySetter<StackPanel>...) {
+        super.init()
         propertySetters.forEach { $0.setter(self) }
     }
     

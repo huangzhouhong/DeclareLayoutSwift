@@ -17,8 +17,8 @@ public class TextCommonProperty<TargetPropertyType>: PropertyBase<TextCommonProp
         return TextCommonProperty<String?>(.text)
     }
 
-    public static var textColor: TextCommonProperty<UIColor?> {
-        return TextCommonProperty<UIColor?>(.textColor)
+    public static var textColor: TextCommonProperty<Any?> {
+        return TextCommonProperty<Any?>(.textColor)
     }
 
     public static var font: TextCommonProperty<UIFont> {
@@ -40,7 +40,7 @@ public func <- <TargetType, TargetPropertyType, ViewType>(property: TextCommonPr
     case .text:
         return PropertySetter<TargetType>(setter: { $0.view.text = value as? String })
     case .textColor:
-        return PropertySetter<TargetType>(setter: { $0.view.textColor = value as? UIColor })
+        return PropertySetter<TargetType>(setter: { $0.view.textColor = UIColor.parse(value)})
     case .font:
         return PropertySetter<TargetType>(setter: { $0.view.font = value as? UIFont })
     case .fontSize:
@@ -56,7 +56,7 @@ public func <- <TargetType, TargetPropertyType, ViewType>(property: TextCommonPr
     case .text:
         return PropertySetter<TargetType>(setter: { $0.view.text = value as? String })
     case .textColor:
-        return PropertySetter<TargetType>(setter: { $0.view.textColor = value as? UIColor })
+        return PropertySetter<TargetType>(setter: { $0.view.textColor = UIColor.parse(value) })
     case .font:
         return PropertySetter<TargetType>(setter: { $0.view.font = value as? UIFont })
     case .fontSize:

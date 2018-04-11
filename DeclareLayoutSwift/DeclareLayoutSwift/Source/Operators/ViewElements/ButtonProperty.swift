@@ -26,8 +26,8 @@ public class ButtonProperty<TargetPropertyType>: PropertyBase<ButtonPropertyName
         return ButtonProperty<String?>(.text)
     }
 
-    public static var textColor: ButtonProperty<UIColor?> {
-        return ButtonProperty<UIColor?>(.textColor)
+    public static var textColor: ButtonProperty<Any?> {
+        return ButtonProperty<Any?>(.textColor)
     }
 
     public static var font: ButtonProperty<UIFont> {
@@ -49,7 +49,7 @@ public func <- <TargetType, TargetPropertyType, ViewType>(property: ButtonProper
     case .text:
         return PropertySetter<TargetType>(setter: { $0.view.setTitle(value as? String, for: .normal) })
     case .textColor:
-        return PropertySetter<TargetType>(setter: { $0.view.setTitleColor(value as? UIColor, for: .normal) })
+        return PropertySetter<TargetType>(setter: { $0.view.setTitleColor(UIColor.parse(value), for: .normal) })
     case .font:
         return PropertySetter<TargetType>(setter: { $0.view.titleLabel?.font = value as? UIFont })
     case .fontSize:

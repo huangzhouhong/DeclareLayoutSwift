@@ -51,7 +51,7 @@ class UITableViewCellStore :NSObject {
     }
 }
 
-extension UITableViewCell: SupportStoreProperty {
+extension UITableViewCell {
     private var store: UITableViewCellStore {
         return getExtStore()
     }

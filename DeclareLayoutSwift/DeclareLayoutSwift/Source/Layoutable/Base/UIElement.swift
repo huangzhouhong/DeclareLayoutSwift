@@ -26,7 +26,7 @@ public class UIElement: NSObject, Layoutable {
     public var margin: UIEdgeInsets?
     public var padding: UIEdgeInsets?
     
-    public var children: [Layoutable] = []
+
     public weak var parent: Layoutable?
     public var visibility: Visibility = .Visible {
         didSet {
@@ -64,10 +64,6 @@ public class UIElement: NSObject, Layoutable {
 //        super.init()
 //    }
     public func setup() {
-        for var child in children {
-            child.parent = self
-            child.setup()
-        }
         measured = false
     }
     
@@ -114,9 +110,6 @@ public class UIElement: NSObject, Layoutable {
     }
     
     func onVisibilityChanged() {
-        for child in children {
-            child.visibility = visibility
-        }
     }
 }
 

@@ -6,7 +6,7 @@
 //  Copyright © 2018年 com.yasoon. All rights reserved.
 //
 
-extension UICollectionViewCell: SupportStoreProperty {
+extension UICollectionViewCell {
     struct PropertyNames {
         static var element = "element"
     }
@@ -33,7 +33,7 @@ extension UICollectionViewCell: SupportStoreProperty {
     }
 }
 
-extension UICollectionView: SupportStoreProperty {
+extension UICollectionView {
     public func makeCell(element: UIElement, indexPath: IndexPath) -> UICollectionViewCell {
         //        print("cellForItemAt:\(indexPath)")
         let cell = dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)

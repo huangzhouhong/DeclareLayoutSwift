@@ -10,9 +10,9 @@ import UIKit
 
 public class UniformGrid: Panel {
     var columnCount: Int
-    public init(columnCount: Int, _ propertySetters: PropertySetter<Grid>..., createChildren: (() -> [Layoutable])? = nil) {
+    public init(columnCount: Int, _ propertySetters: PropertySetter<Grid>...) {
         self.columnCount = columnCount
-        super.init(createChildren)
+        super.init()
     }
     
     override func measureOverwrite(_ availableSize: DLSize) -> CGSize {
