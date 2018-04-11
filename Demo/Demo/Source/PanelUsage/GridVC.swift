@@ -13,16 +13,16 @@ class GridVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = .white
-        self.view.hostElement {
-            Grid(.rows <- [.auto, .auto, .auto], .columns <- [.auto, .star(1)]) {
-                [Label(.text <- "First"),
-                 Label(.text <- "Middle", .gridRowIndex <- 1),
-                 Label(.text <- "Last", .gridRowIndex <- 2),
-                 TextField(.margin <- Insets(8), .gridColumnIndex <- 1, .bgColor <- .gray),
-                 TextField(.margin <- Insets(8), .gridRowIndex <- 1, .gridColumnIndex <- 1, .bgColor <- .gray),
-                 TextField(.margin <- Insets(8), .gridRowIndex <- 2, .gridColumnIndex <- 1, .bgColor <- .gray)]
-            }
+        view.backgroundColor = .white
+        view.hostElement {
+            Grid(.rows <- [.auto, .auto, .auto], .columns <- [.auto, .star(1)])[
+                Label(.text <- "First"),
+                Label(.text <- "Middle", .gridRowIndex <- 1),
+                Label(.text <- "Last", .gridRowIndex <- 2),
+                TextField(.margin <- Insets(8), .gridColumnIndex <- 1, .bgColor <- UIColor.gray),
+                TextField(.margin <- Insets(8), .gridRowIndex <- 1, .gridColumnIndex <- 1, .bgColor <- UIColor.gray),
+                TextField(.margin <- Insets(8), .gridRowIndex <- 2, .gridColumnIndex <- 1, .bgColor <- UIColor.gray)
+            ]
         }
     }
 }

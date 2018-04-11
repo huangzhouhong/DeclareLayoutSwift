@@ -10,14 +10,14 @@ import DeclareLayoutSwift
 import UIKit
 
 extension UIViewController {
-    func createTitleView(title: String, createButtons: (() -> [Layoutable])? = nil) {
+    func createTitleView(title: String, buttons: [Layoutable]) {
         self.navigationController?.navigationBar.barTintColor = .white
 
         let titleView = HostView {
-            Grid(.columns <- [.star(1), .auto], .context <- self) {
-                [Label(.text <- title, .fontSize <- 20),
-                 StackPanel(.gridColumnIndex <- 1, .orientation <- .Horizontal, createChildren: createButtons)]
-            }
+            Grid(.columns <- [.star(1), .auto], .context <- self)[
+                Label(.text <- title, .fontSize <- 20),
+                StackPanel(.gridColumnIndex <- 1, .orientation <- .Horizontal, .children <- buttons)
+            ]
         }
         self.navigationItem.titleView = titleView
     }

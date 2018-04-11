@@ -13,12 +13,12 @@ class StackPanelVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = .white
-        self.view.hostElement {
-            StackPanel {
-                [Image(.image <- "icon1", .hAlign <- .Center),
-                 Label(.text <- "Name", .hAlign <- .Center)]
-            }
+        view.backgroundColor = .white
+        view.hostElement {
+            StackPanel()[
+                Image(.image <- "icon1", .hAlign <- .Center),
+                Label(.text <- "Name", .hAlign <- .Center)
+            ]
         }
     }
 }

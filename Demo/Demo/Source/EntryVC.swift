@@ -22,18 +22,24 @@ struct Entry {
 
 class EntryVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let categorys: [EntryCategory]
-        = [EntryCategory(title: "Panels Usage", entrys:
-               [Entry(vc: StackPanelVC.self, title: "StackPanel", description: "a vertical StackPanel.\nStackPanel support vertical and horizontal layout"),
-                Entry(vc: GridVC.self, title: "Grid", description: "Grid Defines a flexible grid area that consists of columns and rows, and split space like a table.Rows and columns can be auto(fit children content),fixed(explicit value),and star(Split by proportion)"),
-                Entry(vc: UniformGridVC.self, title: "UniformGrid", description: "Split into the same size cells")]),
-           EntryCategory(title: "Table Simples", entrys:
-            [Entry(vc: TableVC.self, title: "Simple Table 1", description: "No need to return cell height,just host element in cell(use `UITableView.makeCell`).Apple's auto sizing will work"),
-             Entry(vc: QQMsgVC.self, title: "Simple Table 2", description: "same as above"),
-             Entry(vc: EntryVC.self, title: "Table with section header", description: "Provide a `HostView` that host `UIElement`,header height is automatic calulate."),
-             Entry(vc: ClassMainVC.self, title: "Items", description: nil)]),
-           EntryCategory(title: "Event Simples", entrys:
-            [Entry(vc: ControlEventVC.self, title: "Control Event Simple", description: nil)]
-        )]
+        = [
+            EntryCategory(title: "Panels Usage", entrys:
+                [
+                    Entry(vc: StackPanelVC.self, title: "StackPanel", description: "a vertical StackPanel.\nStackPanel support vertical and horizontal layout"),
+                    Entry(vc: GridVC.self, title: "Grid", description: "Grid Defines a flexible grid area that consists of columns and rows, and split space like a table.Rows and columns can be auto(fit children content),fixed(explicit value),and star(Split by proportion)"),
+                    Entry(vc: UniformGridVC.self, title: "UniformGrid", description: "Split into the same size cells"),
+            ]),
+            EntryCategory(title: "Table Simples", entrys:
+                [
+                    Entry(vc: TableVC.self, title: "Simple Table 1", description: "No need to return cell height,just host element in cell(use `UITableView.makeCell`).Apple's auto sizing will work"),
+                    Entry(vc: QQMsgVC.self, title: "Simple Table 2", description: "same as above"),
+                    Entry(vc: EntryVC.self, title: "Table with section header", description: "Provide a `HostView` that host `UIElement`,header height is automatic calulate."),
+                    Entry(vc: ClassMainVC.self, title: "Items", description: nil),
+            ]),
+            EntryCategory(title: "Event Simples", entrys:
+                [Entry(vc: ControlEventVC.self, title: "Control Event Simple", description: nil)]
+            ),
+        ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,34 +52,34 @@ class EntryVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
 
-    func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in _: UITableView) -> Int {
         return categorys.count
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categorys[section].entrys.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let entry = categorys[indexPath.section].entrys[indexPath.row]
         let grayFontColor = UIColor(rgbValue: 0x999999)
-        let element = StackPanel(.margin <- Insets(vertical: 8, horizontal: 20)) {
-            [Label(.text <- entry.title),
-             Label(.text <- "Will show:\(entry.vc)", .fontSize <- 13, .textColor <- grayFontColor),
-             View(.height <- 0.5, .bgColor <- .gray),
-             Label(.text <- "Description:\(entry.description ?? "None")", .numberOfLines <- 0, .fontSize <- 13, .textColor <- grayFontColor)]
-        }
+        let element = StackPanel(.margin <- Insets(vertical: 8, horizontal: 20))[
+            Label(.text <- entry.title),
+            Label(.text <- "Will show:\(entry.vc)", .fontSize <- 13, .textColor <- grayFontColor),
+            View(.height <- 0.5, .bgColor <- UIColor.gray),
+            Label(.text <- "Description:\(entry.description ?? "None")", .numberOfLines <- 0, .fontSize <- 13, .textColor <- grayFontColor)
+        ]
 
         return tableView.makeCell(element: element)
     }
 
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let title = categorys[section].title
         return HostView {
-            StackPanel(.orientation <- .Horizontal) {
-                [Image(.image <- "icon1", .margin <- Insets(8)),
-                 Label(.text <- title)]
-            }
+            StackPanel(.orientation <- .Horizontal)[
+                Image(.image <- "icon1", .margin <- Insets(8)),
+                Label(.text <- title)
+            ]
         }
     }
 

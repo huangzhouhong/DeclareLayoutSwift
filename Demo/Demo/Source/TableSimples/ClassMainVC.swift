@@ -14,17 +14,17 @@ class ClassMainVC: UIViewController, UITableViewDataSource, UITableViewDelegate,
     let images = ["banner1", "banner2", "banner3"]
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.view.backgroundColor = .white
-        self.view.hostElement {
+
+        view.backgroundColor = .white
+        view.hostElement {
             Table(.delegate <- self, .dataSource <- self).outlet(&table)
         }
 
-        table.header = StackPanel {
-            [Pages(.pagesDelegate <- self, .scrollDuration <- TimeInterval(2.0), .loop <- false),
-             Items(.delegate <- self, .dataSource <- self, .bgColor <- .white,.itemMinHSpacing <- 0, .margin <- Insets(vertical: 10, horizontal: 20)),
-             ViewElement(.bgColor <- UIColor(rgbValue: 0xf0f0f0), .height <- 8)]
-        }
+        table.header = StackPanel()[
+            Pages(.pagesDelegate <- self, .scrollDuration <- TimeInterval(2.0), .loop <- false),
+            Items(.delegate <- self, .dataSource <- self, .bgColor <- UIColor.white, .itemMinHSpacing <- 0, .margin <- Insets(vertical: 10, horizontal: 20)),
+            ViewElement(.bgColor <- 0xF0F0F0, .height <- 8)
+        ]
     }
 
     // MARK: - PagesDelegate
@@ -39,7 +39,7 @@ class ClassMainVC: UIViewController, UITableViewDataSource, UITableViewDelegate,
 
     // MARK: - tableView
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return 100
     }
 
@@ -49,33 +49,33 @@ class ClassMainVC: UIViewController, UITableViewDataSource, UITableViewDelegate,
         let showDot = indexPath.row % 2 == 0
         let visibility: Visibility = showDot ? .Visible : .Hidden
 
-        let element = Grid(.columns <- [.auto(), .star(1)], .margin <- Insets(8)) {
-            [View(.bgColor <- .red, .cornerRadius <- redDotSize / 2, .width <- redDotSize, .height <- redDotSize, .vAlign <- .Center, .margin <- Insets(10), .visibility <- visibility),
-             StackPanel(.gridColumnIndex <- 1) {
-                 [Grid(.columns <- [.star(1), .auto]) {
-                     [Label(.text <- "今天", .fontSize <- 16, .margin <- Insets(bottom: 4)),
-                      Label(.text <- "2018-01-01", .gridColumnIndex <- 1, .fontSize <- 12, .textColor <- .gray)]
-                 },
-                  Label(.text <- "这是一条通知消息", .fontSize <- 12, .textColor <- .gray)]
-            }]
-        }
+        let element = Grid(.columns <- [.auto(), .star(1)], .margin <- Insets(8))[
+            View(.bgColor <- UIColor.red, .cornerRadius <- redDotSize / 2, .width <- redDotSize, .height <- redDotSize, .vAlign <- .Center, .margin <- Insets(10), .visibility <- visibility),
+            StackPanel(.gridColumnIndex <- 1)[
+                Grid(.columns <- [.star(1), .auto])[
+                    Label(.text <- "今天", .fontSize <- 16, .margin <- Insets(bottom: 4)),
+                    Label(.text <- "2018-01-01", .gridColumnIndex <- 1, .fontSize <- 12, .textColor <- UIColor.gray)
+                ],
+                Label(.text <- "这是一条通知消息", .fontSize <- 12, .textColor <- UIColor.gray)
+            ]
+        ]
 
         return tableView.makeCell(element: element)
     }
 
     // MARK: - collectionView
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
         return 8
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         SpeedLog.print(indexPath)
-        let element = StackPanel(.width <- collectionView.frame.width / 4) {
-//            ImageView(.image <- "https://www.baidu.com/img/bd_logo1.png",.width <- 50,.height <- 50) &
-            Image(.image <- "icon1", .hAlign <- .Center) &
-                Label(.text <- "icon", .hAlign <- .Center)
-        }
+        let element = StackPanel(.width <- collectionView.frame.width / 4)[
+//            ImageView(.image <- "https://www.baidu.com/img/bd_logo1.png",.width <- 50,.height <- 50) ,
+            Image(.image <- "icon1", .hAlign <- .Center),
+            Label(.text <- "icon", .hAlign <- .Center)
+        ]
         return collectionView.makeCell(element: element, indexPath: indexPath)
     }
 }

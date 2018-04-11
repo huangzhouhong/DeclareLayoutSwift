@@ -13,16 +13,14 @@ class UniformGridVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = .white
-        self.view.hostElement {
-            UniformGrid(columnCount: 3) {
-                [
-                    Label(.text <- "11111", .bgColor <- .red),
-                    Label(.text <- "22222222222222222222222222", .bgColor <- .green),
-                    Label(.text <- "33333333333333333333333333", .bgColor <- .blue),
-                    Label(.text <- "44444444444444444444444444", .bgColor <- .yellow)
-                ]
-            }
+        view.backgroundColor = .white
+        view.hostElement {
+            UniformGrid(columnCount: 3)[
+                Label(.text <- "11111", .bgColor <- UIColor.red),
+                Label(.text <- "22222222222222222222222222", .bgColor <- UIColor.green),
+                Label(.text <- "33333333333333333333333333", .bgColor <- UIColor.blue),
+                Label(.text <- "44444444444444444444444444", .bgColor <- UIColor.yellow)
+            ]
         }
     }
 }

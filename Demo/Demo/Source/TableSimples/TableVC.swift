@@ -13,8 +13,8 @@ class TableVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = .white
-        self.view.hostElement {
+        view.backgroundColor = .white
+        view.hostElement {
             Table(.delegate <- self, .dataSource <- self)
         }
     }
@@ -26,19 +26,17 @@ class TableVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         return String(text[...index])
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return 100
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let randString = generateRandomString()
 
-        let element = Grid(.columns <- [.auto, .star(1)], .padding <- Insets(vertical: 8, horizontal: 20)) {
-            [
-                Label(.text <- String(indexPath.row + 1), .bgColor <- .red, .width <- 30, .height <- 30, .vAlign <- .Center, .cornerRadius <- 15, .textColor <- .white, .textAlignment <- .center),
-                Label(.gridColumnIndex <- 1, .margin <- Insets(left: 8), .text <- randString, .numberOfLines <- 0),
-            ]
-        }
+        let element = Grid(.columns <- [.auto, .star(1)], .padding <- Insets(vertical: 8, horizontal: 20))[
+            Label(.text <- String(indexPath.row + 1), .bgColor <- UIColor.red, .width <- 30, .height <- 30, .vAlign <- .Center, .cornerRadius <- 15, .textColor <- UIColor.white, .textAlignment <- .center),
+            Label(.gridColumnIndex <- 1, .margin <- Insets(left: 8), .text <- randString, .numberOfLines <- 0)
+        ]
 
         return tableView.makeCell(element: element)
     }
