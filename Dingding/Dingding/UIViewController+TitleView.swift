@@ -11,31 +11,14 @@ import UIKit
 
 extension UIViewController {
     func createTitleView(title: String, buttons: [Layoutable]) {
-        self.navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.barTintColor = .white
 
         let titleView = HostView {
-            Grid(.columns <- [.star(1), .auto], .context <- self)[
+            LinearGrid(.columns <- [.star(1), .auto], .context <- self)[
                 Label(.text <- title, .fontSize <- 20),
-                StackPanel(.gridColumnIndex <- 1, .orientation <- .Horizontal, .children <- buttons)
+                StackPanel(.orientation <- .Horizontal, .children <- buttons)
             ]
         }
-        self.navigationItem.titleView = titleView
+        navigationItem.titleView = titleView
     }
-
-//    func createTitleView(title: String) {
-//        self.navigationController?.navigationBar.barTintColor = .white
-    //
-//        let titleView = HostView {
-//            Grid(.columns <- [.star(1), .auto], .context <- self) {
-//                [Label(.text <- title, .fontSize <- 20),
-//                 StackPanel(.gridColumnIndex <- 1, .orientation <- .Horizontal) {
-//                     [Button(.image <- #imageLiteral(resourceName: "Msg_nav1"), .touchDown <- "onTap"),
-//                      Button(.image <- #imageLiteral(resourceName: "Msg_nav2"), .margin <- Insets(vertical: 0, horizontal: 20), .touchDown <- "onTap"),
-//                      Button(.image <- #imageLiteral(resourceName: "Msg_nav3"), .touchDown <- "onTap"),
-//                    ]
-//                }]
-//            }
-//        }
-//        self.navigationItem.titleView = titleView
-//    }
 }

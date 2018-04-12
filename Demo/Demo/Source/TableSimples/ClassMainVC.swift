@@ -49,12 +49,12 @@ class ClassMainVC: UIViewController, UITableViewDataSource, UITableViewDelegate,
         let showDot = indexPath.row % 2 == 0
         let visibility: Visibility = showDot ? .Visible : .Hidden
 
-        let element = Grid(.columns <- [.auto(), .star(1)], .margin <- Insets(8))[
+        let element = LinearGrid(.columns <- [.auto(), .star(1)], .margin <- Insets(8))[
             View(.bgColor <- UIColor.red, .cornerRadius <- redDotSize / 2, .width <- redDotSize, .height <- redDotSize, .vAlign <- .Center, .margin <- Insets(10), .visibility <- visibility),
-            StackPanel(.gridColumnIndex <- 1)[
-                Grid(.columns <- [.star(1), .auto])[
+            StackPanel()[
+                LinearGrid(.columns <- [.star(1), .auto])[
                     Label(.text <- "今天", .fontSize <- 16, .margin <- Insets(bottom: 4)),
-                    Label(.text <- "2018-01-01", .gridColumnIndex <- 1, .fontSize <- 12, .textColor <- UIColor.gray)
+                    Label(.text <- "2018-01-01", .fontSize <- 12, .textColor <- UIColor.gray)
                 ],
                 Label(.text <- "这是一条通知消息", .fontSize <- 12, .textColor <- UIColor.gray)
             ]

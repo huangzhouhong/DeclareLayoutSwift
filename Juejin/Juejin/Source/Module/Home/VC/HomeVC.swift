@@ -15,14 +15,14 @@ class HomeVC: UIViewController, PagesDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+ 
         self.categoryDelegate = CategoryDelegate()
         self.categoryDelegate.categorySelected = {
             [weak self] newIndex in
             self?.pages.view.scrollToItem(at: IndexPath(row: newIndex, section: 0), at: .centeredHorizontally, animated: true)
         }
 
-        let titleView = HostView {
+         let titleView = HostView {
             Items(.delegate <- categoryDelegate, .dataSource <- categoryDelegate, .bgColor <- UIColor.clear) {
                 collectionView in
                 collectionView.showsHorizontalScrollIndicator = false

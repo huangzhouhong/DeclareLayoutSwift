@@ -33,9 +33,9 @@ class TableVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let randString = generateRandomString()
 
-        let element = Grid(.columns <- [.auto, .star(1)], .padding <- Insets(vertical: 8, horizontal: 20))[
+        let element = LinearGrid(.columns <- [.auto, .star(1)], .padding <- Insets(vertical: 8, horizontal: 20))[
             Label(.text <- String(indexPath.row + 1), .bgColor <- UIColor.red, .width <- 30, .height <- 30, .vAlign <- .Center, .cornerRadius <- 15, .textColor <- UIColor.white, .textAlignment <- .center),
-            Label(.gridColumnIndex <- 1, .margin <- Insets(left: 8), .text <- randString, .numberOfLines <- 0)
+            Label(.margin <- Insets(left: 8), .text <- randString, .numberOfLines <- 0)
         ]
 
         return tableView.makeCell(element: element)

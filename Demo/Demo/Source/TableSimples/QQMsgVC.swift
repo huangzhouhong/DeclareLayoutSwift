@@ -36,13 +36,13 @@ class QQMsgVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let rowData = tableData[indexPath.row]
-        let element = Grid(.columns <- [.auto, .star(1)], .padding <- Insets(vertical: 8, horizontal: 20))[
+        let element = LinearGrid(.columns <- [.auto, .star(1)], .padding <- Insets(vertical: 8, horizontal: 20))[
             Image(.width <- 50, .image <- rowData.iconName, .margin <- Insets(right: 10)),
-            StackPanel(.gridColumnIndex <- 1)[
-                Grid(.columns <- [.star(1), .auto])[
+            StackPanel()[
+                LinearGrid(.columns <- [.star(1), .auto])[
                     Label(.text <- rowData.name, .fontSize <- 17),
-                    Label(.gridColumnIndex <- 1, .text <- rowData.time, .fontSize <- 13, .textColor <- "#cccccc")
-                ] ,
+                    Label(.text <- rowData.time, .fontSize <- 13, .textColor <- "#cccccc")
+                ],
                 Label(.text <- rowData.lastMsg, .fontSize <- 15, .textColor <- UIColor.gray)
             ]
         ]
