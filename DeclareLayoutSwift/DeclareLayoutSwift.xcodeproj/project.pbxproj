@@ -31,6 +31,7 @@
 		CAC092FF207C6DBC00809891 /* DisposeBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC092FE207C6DBC00809891 /* DisposeBag.swift */; };
 		CAC09302207CDA9100809891 /* PanelProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC09301207CDA9100809891 /* PanelProperty.swift */; };
 		CAD917282059850500A8CFA5 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD917272059850500A8CFA5 /* SDWebImage.framework */; };
+		CAE88607207E29CC00B803C2 /* LinearGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE88606207E29CC00B803C2 /* LinearGrid.swift */; };
 		CAE960D020620BC000BE6304 /* HostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE960CF20620BC000BE6304 /* HostView.swift */; };
 		CAE960D220620BDC00BE6304 /* TableCellHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE960D120620BDC00BE6304 /* TableCellHost.swift */; };
 		CAE960D420620C2500BE6304 /* CollectionCellHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE960D320620C2500BE6304 /* CollectionCellHost.swift */; };
@@ -78,6 +79,7 @@
 		CAC092FE207C6DBC00809891 /* DisposeBag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisposeBag.swift; sourceTree = "<group>"; };
 		CAC09301207CDA9100809891 /* PanelProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelProperty.swift; sourceTree = "<group>"; };
 		CAD917272059850500A8CFA5 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = ../Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
+		CAE88606207E29CC00B803C2 /* LinearGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearGrid.swift; sourceTree = "<group>"; };
 		CAE960CF20620BC000BE6304 /* HostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostView.swift; sourceTree = "<group>"; };
 		CAE960D120620BDC00BE6304 /* TableCellHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellHost.swift; sourceTree = "<group>"; };
 		CAE960D320620C2500BE6304 /* CollectionCellHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCellHost.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			children = (
 				CA31366E20340C3100BFE06A /* Panel.swift */,
 				CA31366F20340C3100BFE06A /* Grid.swift */,
+				CAE88606207E29CC00B803C2 /* LinearGrid.swift */,
 				CA31367020340C3100BFE06A /* StackPanel.swift */,
 				CA31367120340C3100BFE06A /* UniformGrid.swift */,
 			);
@@ -399,6 +402,7 @@
 				CAF7EEAB2073CFDF00B85328 /* SupportStoreProperty.swift in Sources */,
 				CAF919D3203F1BCB0087ACFA /* LayoutableProperty.swift in Sources */,
 				CAF919DD203F1BCB0087ACFA /* TextCommonProperty.swift in Sources */,
+				CAE88607207E29CC00B803C2 /* LinearGrid.swift in Sources */,
 				CA3136AB20340CAD00BFE06A /* SpeedLog.swift in Sources */,
 				CAF919D2203F1BCB0087ACFA /* PropertyBase.swift in Sources */,
 				CA31369220340C3100BFE06A /* UniformGrid.swift in Sources */,

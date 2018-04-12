@@ -12,11 +12,12 @@ public class Panel: UIElement {
     public var children: [Layoutable] = []
 
     public override func setup() {
+        super.setup()
+        
         for child in children {
             child.parent = self
             child.setup()
         }
-        super.setup()
     }
 
     override func onVisibilityChanged() {
