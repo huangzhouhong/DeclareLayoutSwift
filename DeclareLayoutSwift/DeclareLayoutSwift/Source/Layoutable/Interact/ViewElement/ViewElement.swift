@@ -23,6 +23,17 @@ extension UIButton: SelfPaddingable {
     }
 }
 
+extension UIScrollView: SelfPaddingable {
+    public var padding: UIEdgeInsets? {
+        get {
+            return contentInset
+        }
+        set {
+            contentInset = newValue ?? UIEdgeInsets.zero
+        }
+    }
+}
+
 public class ViewElement<ViewType>: UIElement where ViewType: UIView {
     public let view: ViewType
     public override var padding: UIEdgeInsets? {
@@ -41,72 +52,69 @@ public class ViewElement<ViewType>: UIElement where ViewType: UIView {
             }
         }
     }
-    
-    public init(view: ViewType) {
+
+    public init(view: ViewType, propertySetters: [PropertySetter<ViewElement>]? = nil) {
         self.view = view
-        
         super.init()
-        self.selfPadding = view is SelfPaddingable
+        propertySetters?.forEach { $0.setter(self) }
+        selfPadding = view is SelfPaddingable
     }
-    
+
     public convenience init(_ propertySetters: PropertySetter<ViewElement>..., configViewBlock: ((ViewType) -> Void)? = nil) {
-        self.init(view: ViewType())
-        propertySetters.forEach { $0.setter(self) }
-        configViewBlock?(self.view)
+        self.init(view: ViewType(), propertySetters: propertySetters)
+        configViewBlock?(view)
     }
-    
+
     public convenience init(_ propertySetters: PropertySetter<ViewElement>..., createViewBlock: () -> ViewType) {
-        self.init(view: createViewBlock())
-        propertySetters.forEach { $0.setter(self) }
+        self.init(view: createViewBlock(), propertySetters: propertySetters)
     }
-    
+
     override func onVisibilityChanged() {
-        self.view.isHidden = visibility != .Visible
-        
-    }
-    
-    public override func setup() {
-        super.setup()
-        
-        if view is UIControl {
-            (self as! SupportControlEvent).setupControlEvent()
-        }
+        view.isHidden = visibility != .Visible
     }
     
     override func measureOverwrite(_ availableSize: DLSize) -> CGSize {
-        return self.view.sizeThatFits(CGSize(availableSize))
+        return view.sizeThatFits(CGSize(availableSize))
     }
-    
+
     override func arrangeOverwrite(rect: CGRect, innerRect: CGRect) {
-        hostView?.addSubview(self.view)
-        
+        hostView?.addSubview(view)
+
         if view is SelfPaddingable {
-            self.view.frame = rect
+            view.frame = rect
         } else {
-            self.view.frame = innerRect
+            view.frame = innerRect
         }
     }
-    
 }
 
 public class PaddingTextField: UITextField, SelfPaddingable {
     public var padding: UIEdgeInsets?
     public override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.innerRectWithInset(self.padding)
+        return bounds.innerRectWithInset(padding)
     }
-    
+
     public override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.innerRectWithInset(self.padding)
+        return bounds.innerRectWithInset(padding)
     }
-    
+
     public override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.innerRectWithInset(self.padding)
+        return bounds.innerRectWithInset(padding)
     }
-    
 }
 
 public typealias View = ViewElement<UIView>
 public typealias Label = ViewElement<UILabel>
 public typealias Button = ViewElement<UIButton>
 public typealias TextField = ViewElement<PaddingTextField>
-public typealias PageControl = ViewElement<UIPageControl>
+// public typealias PageControl = ViewElement<UIPageControl>
+
+public class PageControl: ViewElement<UIPageControl> {
+    override func measureOverwrite(_ availableSize: DLSize) -> CGSize {
+        // let measure return correct height
+        if view.numberOfPages == 0 {
+            view.numberOfPages = 1
+        }
+        return super.measureOverwrite(availableSize)
+    }
+}

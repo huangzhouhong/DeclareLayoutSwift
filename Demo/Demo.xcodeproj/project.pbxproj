@@ -17,6 +17,8 @@
 		CA7B00E920639F8C00A71E08 /* TableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7B00E620639F8B00A71E08 /* TableVC.swift */; };
 		CA7B00EA20639F8C00A71E08 /* QQMsgVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7B00E720639F8B00A71E08 /* QQMsgVC.swift */; };
 		CA7B00EB20639F8C00A71E08 /* ClassMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7B00E820639F8B00A71E08 /* ClassMainVC.swift */; };
+		CA9E943A20A421D30080C0CB /* Aspects.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA9E943920A421D20080C0CB /* Aspects.framework */; };
+		CA9E943B20A421D30080C0CB /* Aspects.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA9E943920A421D20080C0CB /* Aspects.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CAE2B1AF203EFCA7009FACD3 /* DeclareLayoutSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE2B1AE203C5917009FACD3 /* DeclareLayoutSwift.framework */; };
 		CAE2B1B0203EFCA7009FACD3 /* DeclareLayoutSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CAE2B1AE203C5917009FACD3 /* DeclareLayoutSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CAE960D9206282F200BE6304 /* StackPanelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE960D8206282F200BE6304 /* StackPanelVC.swift */; };
@@ -33,6 +35,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				CA06F32C205988BE00F4A372 /* SDWebImage.framework in Embed Frameworks */,
+				CA9E943B20A421D30080C0CB /* Aspects.framework in Embed Frameworks */,
 				CAE2B1B0203EFCA7009FACD3 /* DeclareLayoutSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -52,6 +55,7 @@
 		CA7B00E620639F8B00A71E08 /* TableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableVC.swift; sourceTree = "<group>"; };
 		CA7B00E720639F8B00A71E08 /* QQMsgVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QQMsgVC.swift; sourceTree = "<group>"; };
 		CA7B00E820639F8B00A71E08 /* ClassMainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassMainVC.swift; sourceTree = "<group>"; };
+		CA9E943920A421D20080C0CB /* Aspects.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Aspects.framework; path = ../Carthage/Build/iOS/Aspects.framework; sourceTree = "<group>"; };
 		CAE2B1AE203C5917009FACD3 /* DeclareLayoutSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DeclareLayoutSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAE960D8206282F200BE6304 /* StackPanelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackPanelVC.swift; sourceTree = "<group>"; };
 		CAE960DA2063560F00BE6304 /* EntryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVC.swift; sourceTree = "<group>"; };
@@ -65,6 +69,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA06F32B205988BE00F4A372 /* SDWebImage.framework in Frameworks */,
+				CA9E943A20A421D30080C0CB /* Aspects.framework in Frameworks */,
 				CAE2B1AF203EFCA7009FACD3 /* DeclareLayoutSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -124,6 +129,7 @@
 		CA3136B920340DE300BFE06A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CA9E943920A421D20080C0CB /* Aspects.framework */,
 				CA06F32A205988BE00F4A372 /* SDWebImage.framework */,
 				CAE2B1AE203C5917009FACD3 /* DeclareLayoutSwift.framework */,
 			);

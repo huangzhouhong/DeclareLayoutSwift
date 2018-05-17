@@ -19,9 +19,17 @@ class ControlEventVC: UIViewController {
 
         hostElement {
             StackPanel()[
-                TextField(.bgColor <- UIColor.gray, .textColor <- UIColor.white, .padding <- Insets(vertical: 8, horizontal: 15), .margin <- Insets(8), .editingChanged <- #selector(self.onEditingChanged(sender:))),
+                TextField(.padding <- Insets(vertical: 8, horizontal: 15), .margin <- Insets(8)) {
+                    $0.backgroundColor = .gray
+                    $0.textColor = .white
+                    $0.addTarget(self, action: #selector(self.onEditingChanged(sender:)), for: .touchUpInside)
+                },
                 Label().outlet(&self.label),
-                Button(.title <- "Tap Me", .textColor <- UIColor.blue, .touchDown <- #selector(self.onTapButton))
+                Button {
+                    $0.setTitle("Tap Me", for: .normal)
+                    $0.setTitleColor(.blue, for: .normal)
+                    $0.addTarget(self, action: #selector(self.onTapButton), for: .touchUpInside)
+                }
             ]
         }
     }

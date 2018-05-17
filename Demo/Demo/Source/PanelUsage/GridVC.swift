@@ -16,12 +16,12 @@ class GridVC: UIViewController {
         view.backgroundColor = .white
         view.hostElement {
             Grid(.rows <- [.auto, .auto, .auto], .columns <- [.auto, .star(1)])[
-                Label(.text <- "First"),
-                Label(.text <- "Middle", .gridRowIndex <- 1),
-                Label(.text <- "Last", .gridRowIndex <- 2),
-                TextField(.margin <- Insets(8), .gridColumnIndex <- 1, .bgColor <- UIColor.gray),
-                TextField(.margin <- Insets(8), .gridRowIndex <- 1, .gridColumnIndex <- 1, .bgColor <- UIColor.gray),
-                TextField(.margin <- Insets(8), .gridRowIndex <- 2, .gridColumnIndex <- 1, .bgColor <- UIColor.gray)
+                Label { $0.text = "First" },
+                Label(.gridRowIndex <- 1) { $0.text = "Middle" },
+                Label(.gridRowIndex <- 2) { $0.text = "Last" },
+                TextField(.margin <- Insets(8), .gridColumnIndex <- 1) { $0.backgroundColor = .gray },
+                TextField(.margin <- Insets(8), .gridRowIndex <- 1, .gridColumnIndex <- 1) { $0.backgroundColor = .gray },
+                TextField(.margin <- Insets(8), .gridRowIndex <- 2, .gridColumnIndex <- 1) { $0.backgroundColor = .gray }
             ]
         }
     }

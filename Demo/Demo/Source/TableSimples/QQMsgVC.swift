@@ -26,7 +26,10 @@ class QQMsgVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
         view.backgroundColor = .white
         view.hostElement {
-            Table(.delegate <- self, .dataSource <- self)
+            Table {
+                $0.delegate = self
+                $0.dataSource = self
+            }
         }
     }
 
@@ -36,14 +39,28 @@ class QQMsgVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let rowData = tableData[indexPath.row]
+
         let element = LinearGrid(.columns <- [.auto, .star(1)], .padding <- Insets(vertical: 8, horizontal: 20))[
-            Image(.width <- 50, .image <- rowData.iconName, .margin <- Insets(right: 10)),
+            Image(.width <- 50, .margin <- Insets(right: 10)) {
+                $0.image = UIImage(named: rowData.iconName)
+            },
             StackPanel()[
                 LinearGrid(.columns <- [.star(1), .auto])[
-                    Label(.text <- rowData.name, .fontSize <- 17),
-                    Label(.text <- rowData.time, .fontSize <- 13, .textColor <- "#cccccc")
+                    Label {
+                        $0.text = rowData.name
+                        $0.font = UIFont.systemFont(ofSize: 17)
+                    },
+                    Label {
+                        $0.text = rowData.time
+                        $0.font = UIFont.systemFont(ofSize: 13)
+                        $0.textColor = UIColor("#cccccc")
+                    }
                 ],
-                Label(.text <- rowData.lastMsg, .fontSize <- 15, .textColor <- UIColor.gray)
+                Label {
+                    $0.text = rowData.lastMsg
+                    $0.font = UIFont.systemFont(ofSize: 15)
+                    $0.textColor = .gray
+                }
             ]
         ]
 

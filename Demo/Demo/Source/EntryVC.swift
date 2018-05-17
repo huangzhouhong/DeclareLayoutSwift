@@ -46,8 +46,11 @@ class EntryVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
         view.backgroundColor = .white
         view.hostElement {
-            Table(.delegate <- self, .dataSource <- self) {
-                UITableView(frame: CGRect.zero, style: .grouped)
+            Table {
+                let tableView = UITableView(frame: CGRect.zero, style: .grouped)
+                tableView.delegate = self
+                tableView.dataSource = self
+                return tableView
             }
         }
     }
@@ -62,12 +65,21 @@ class EntryVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let entry = categorys[indexPath.section].entrys[indexPath.row]
-        let grayFontColor = UIColor(rgbValue: 0x999999)
+
         let element = StackPanel(.margin <- Insets(vertical: 8, horizontal: 20))[
-            Label(.text <- entry.title),
-            Label(.text <- "Will show:\(entry.vc)", .fontSize <- 13, .textColor <- grayFontColor),
-            View(.height <- 0.5, .bgColor <- UIColor.gray),
-            Label(.text <- "Description:\(entry.description ?? "None")", .numberOfLines <- 0, .fontSize <- 13, .textColor <- grayFontColor)
+            Label { $0.text = entry.title },
+            Label {
+                $0.text = "Will show:\(entry.vc)"
+                $0.font = UIFont.systemFont(ofSize: 13)
+                $0.textColor = UIColor(0x999999)
+            },
+            View(.height <- 0.5) { $0.backgroundColor = .gray },
+            Label {
+                $0.text = "Description:\(entry.description ?? "None")"
+                $0.numberOfLines = 0
+                $0.font = UIFont.systemFont(ofSize: 13)
+                $0.textColor = UIColor(0x999999)
+            }
         ]
 
         return tableView.makeCell(element: element)
@@ -75,10 +87,11 @@ class EntryVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let title = categorys[section].title
+        
         return HostView {
             StackPanel(.orientation <- .Horizontal)[
-                Image(.image <- "icon1", .margin <- Insets(8)),
-                Label(.text <- title)
+                Image(.margin <- Insets(8)) { $0.image = #imageLiteral(resourceName: "icon1") },
+                Label { $0.text = title }
             ]
         }
     }

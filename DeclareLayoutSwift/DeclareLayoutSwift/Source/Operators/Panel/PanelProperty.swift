@@ -14,7 +14,6 @@ public class PanelProperty<TargetPropertyType>: PropertyBase<PanelPropertyName> 
     public static var children: PanelProperty<[Layoutable]> {
         return PanelProperty<[Layoutable]>(.children)
     }
-    
 }
 
 public func <- <TargetType, TargetPropertyType>(property: PanelProperty<TargetPropertyType>, value: TargetPropertyType) -> PropertySetter<TargetType> where TargetType: Panel {

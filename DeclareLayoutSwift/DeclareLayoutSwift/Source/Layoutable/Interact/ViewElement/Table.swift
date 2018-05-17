@@ -11,11 +11,17 @@ import UIKit
 public class Table: ViewElement<UITableView> {
     public var header: UIElement? {
         didSet {
-            let width = self.view.frame.width
+            let width = view.frame.width
             if width > 0 {
-                self.createTableHeaderView(width: self.view.frame.width)
+                createTableHeaderView(width: view.frame.width)
             }
         }
+    }
+
+    public convenience init(_ propertySetters: PropertySetter<Table>..., configViewBlock: (UITableView, Table) -> Void) {
+        self.init()
+        propertySetters.forEach { $0.setter(self) }
+        configViewBlock(view, self)
     }
 
     func createTableHeaderView(width: CGFloat) {
@@ -28,17 +34,12 @@ public class Table: ViewElement<UITableView> {
             let rect = CGRect(x: 0, y: 0, width: width, height: header.desiredSize.height)
             headerView.frame = rect
             header.arrange(rect)
-            self.view.tableHeaderView = headerView
+            view.tableHeaderView = headerView
         }
     }
 
     override func arrangeOverwrite(rect: CGRect, innerRect: CGRect) {
         super.arrangeOverwrite(rect: rect, innerRect: innerRect)
-        self.createTableHeaderView(width: rect.width)
+        createTableHeaderView(width: rect.width)
     }
-
-//    public init(_ propertySetters: PropertySetter<ViewElement<UITableView>>...) {
-//        super.init(view:UITableView())
-//        propertySetters.forEach { $0.setter(self) }
-//    }
 }

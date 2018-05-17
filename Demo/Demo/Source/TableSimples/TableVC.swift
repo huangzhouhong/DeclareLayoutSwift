@@ -15,7 +15,10 @@ class TableVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
         view.backgroundColor = .white
         view.hostElement {
-            Table(.delegate <- self, .dataSource <- self)
+            Table {
+                $0.delegate = self
+                $0.dataSource = self
+            }
         }
     }
 
@@ -34,8 +37,17 @@ class TableVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let randString = generateRandomString()
 
         let element = LinearGrid(.columns <- [.auto, .star(1)], .padding <- Insets(vertical: 8, horizontal: 20))[
-            Label(.text <- String(indexPath.row + 1), .bgColor <- UIColor.red, .width <- 30, .height <- 30, .vAlign <- .Center, .cornerRadius <- 15, .textColor <- UIColor.white, .textAlignment <- .center),
-            Label(.margin <- Insets(left: 8), .text <- randString, .numberOfLines <- 0)
+            Label(.width <- 30, .height <- 30, .vAlign <- .Center) {
+                $0.text = String(indexPath.row + 1)
+                $0.backgroundColor = .red
+                $0.layer.cornerRadius = 15
+                $0.textColor = .white
+                $0.textAlignment = .center
+            },
+            Label(.margin <- Insets(left: 8)) {
+                $0.text = randString
+                $0.numberOfLines = 0
+            }
         ]
 
         return tableView.makeCell(element: element)

@@ -14,7 +14,6 @@ public class StackPanelProperty<TargetPropertyType>: PropertyBase<StackPanelProp
     public static var orientation: StackPanelProperty<StackPanel.Orientation> {
         return StackPanelProperty<StackPanel.Orientation>(.orientation)
     }
-    
 }
 
 public func <- <TargetType, TargetPropertyType>(property: StackPanelProperty<TargetPropertyType>, value: TargetPropertyType) -> PropertySetter<TargetType> where TargetType: StackPanel {
@@ -24,4 +23,3 @@ public func <- <TargetType, TargetPropertyType>(property: StackPanelProperty<Tar
         return PropertySetter<TargetType>(setter: { $0.orientation = value as! StackPanel.Orientation })
     }
 }
-

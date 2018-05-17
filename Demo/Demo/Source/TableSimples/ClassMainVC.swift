@@ -9,32 +9,64 @@
 import DeclareLayoutSwift
 import UIKit
 
-class ClassMainVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, PagesDelegate {
+class ClassMainBannerDelegate: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
+    let images = ["banner1", "banner2", "banner3"]
+    func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
+        return images.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        SpeedLog.print("ClassMainBannerDelegate:\(indexPath)")
+        let element = Image { $0.image = UIImage(named: self.images[indexPath.row]) }
+        return collectionView.makeCell(element: element, indexPath: indexPath)
+    }
+
+    func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        SpeedLog.print(indexPath)
+    }
+}
+
+class ClassMainVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     weak var table: Table!
     let images = ["banner1", "banner2", "banner3"]
+    var banner: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .white
         view.hostElement {
-            Table(.delegate <- self, .dataSource <- self).outlet(&table)
+            Table {
+                $0.delegate = self
+                $0.dataSource = self
+            }.outlet(&table)
         }
 
         table.header = StackPanel()[
-            Pages(.pagesDelegate <- self, .scrollDuration <- TimeInterval(2.0), .loop <- false),
-            Items(.delegate <- self, .dataSource <- self, .bgColor <- UIColor.white, .itemMinHSpacing <- 0, .margin <- Insets(vertical: 10, horizontal: 20)),
-            ViewElement(.bgColor <- 0xF0F0F0, .height <- 8)
+            Items {
+                let delegate = UICollectionViewInfiniteLoopHook(strongHook:ClassMainBannerDelegate())
+
+                let collectionView = UICollectionViewFactory.createPage()
+                let autoScrollController = AutoScrollController(collectionView: collectionView)
+                autoScrollController.retain(owner: collectionView)
+
+                collectionView.dataSource = delegate
+                collectionView.delegate = delegate
+                delegate.retain(owner: collectionView)
+                banner = collectionView
+                return collectionView
+            },
+            Items(.margin <- Insets(vertical: 10, horizontal: 20)) {
+                $0.delegate = self
+                $0.dataSource = self
+                $0.backgroundColor = .white
+                if let layout = $0.collectionViewLayout as? UICollectionViewFlowLayout {
+                    layout.minimumInteritemSpacing = 0
+                }
+            },
+            View(.height <- 8) {
+                $0.backgroundColor = UIColor(0xF0F0F0)
+            }
         ]
-    }
-
-    // MARK: - PagesDelegate
-
-    func pagesCellForItemAt(_ index: Int) -> UIElement {
-        return Image(.image <- images[index])
-    }
-
-    func pageNumberOfItems() -> Int {
-        return images.count
     }
 
     // MARK: - tableView
@@ -50,13 +82,27 @@ class ClassMainVC: UIViewController, UITableViewDataSource, UITableViewDelegate,
         let visibility: Visibility = showDot ? .Visible : .Hidden
 
         let element = LinearGrid(.columns <- [.auto(), .star(1)], .margin <- Insets(8))[
-            View(.bgColor <- UIColor.red, .cornerRadius <- redDotSize / 2, .width <- redDotSize, .height <- redDotSize, .vAlign <- .Center, .margin <- Insets(10), .visibility <- visibility),
+            View(.width <- redDotSize, .height <- redDotSize, .vAlign <- .Center, .margin <- Insets(10), .visibility <- visibility) {
+                $0.backgroundColor = .red
+                $0.layer.cornerRadius = redDotSize / 2
+            },
             StackPanel()[
                 LinearGrid(.columns <- [.star(1), .auto])[
-                    Label(.text <- "今天", .fontSize <- 16, .margin <- Insets(bottom: 4)),
-                    Label(.text <- "2018-01-01", .fontSize <- 12, .textColor <- UIColor.gray)
+                    Label(.margin <- Insets(bottom: 4)) {
+                        $0.text = "今天"
+                        $0.font = UIFont.systemFont(ofSize: 16)
+                    },
+                    Label {
+                        $0.text = "2018-01-01"
+                        $0.font = UIFont.systemFont(ofSize: 12)
+                        $0.textColor = .gray
+                    }
                 ],
-                Label(.text <- "这是一条通知消息", .fontSize <- 12, .textColor <- UIColor.gray)
+                Label {
+                    $0.text = "这是一条通知消息"
+                    $0.font = UIFont.systemFont(ofSize: 12)
+                    $0.textColor = .gray
+                }
             ]
         ]
 
@@ -72,9 +118,8 @@ class ClassMainVC: UIViewController, UITableViewDataSource, UITableViewDelegate,
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         SpeedLog.print(indexPath)
         let element = StackPanel(.width <- collectionView.frame.width / 4)[
-//            ImageView(.image <- "https://www.baidu.com/img/bd_logo1.png",.width <- 50,.height <- 50) ,
-            Image(.image <- "icon1", .hAlign <- .Center),
-            Label(.text <- "icon", .hAlign <- .Center)
+            Image(.hAlign <- .Center) { $0.image = #imageLiteral(resourceName: "icon1") },
+            Label(.hAlign <- .Center) { $0.text = "icon" }
         ]
         return collectionView.makeCell(element: element, indexPath: indexPath)
     }

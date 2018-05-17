@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA8EB2FB2094D1460072F368 /* MessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8EB2F12094D1460072F368 /* MessageVC.swift */; };
+		CA8EB2FC2094D1460072F368 /* UIViewController+TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8EB2F42094D1460072F368 /* UIViewController+TitleView.swift */; };
+		CA8EB2FD2094D1460072F368 /* WorkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8EB2F72094D1460072F368 /* WorkVC.swift */; };
+		CA8EB2FE2094D1460072F368 /* MainTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8EB2FA2094D1460072F368 /* MainTabVC.swift */; };
+		CA8EB3002094D4470072F368 /* WorkItemsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8EB2FF2094D4470072F368 /* WorkItemsDelegate.swift */; };
 		CA989B27206687C200EE763B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA989B26206687C200EE763B /* AppDelegate.swift */; };
-		CA989B29206687C200EE763B /* MessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA989B28206687C200EE763B /* MessageVC.swift */; };
 		CA989B2C206687C200EE763B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA989B2A206687C200EE763B /* Main.storyboard */; };
 		CA989B2E206687C200EE763B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA989B2D206687C200EE763B /* Assets.xcassets */; };
 		CA989B31206687C200EE763B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA989B2F206687C200EE763B /* LaunchScreen.storyboard */; };
@@ -16,9 +20,8 @@
 		CA989B3F2066882100EE763B /* SDWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA989B3D2066882100EE763B /* SDWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CA989B422066885400EE763B /* DeclareLayoutSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA989B412066885400EE763B /* DeclareLayoutSwift.framework */; };
 		CA989B432066885400EE763B /* DeclareLayoutSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA989B412066885400EE763B /* DeclareLayoutSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CAF7EE872066A4A000B85328 /* MainTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF7EE862066A4A000B85328 /* MainTabVC.swift */; };
-		CAF7EE892066AB9000B85328 /* UIViewController+TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF7EE882066AB9000B85328 /* UIViewController+TitleView.swift */; };
-		CAF7EE8B2066AC4000B85328 /* WorkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF7EE8A2066AC4000B85328 /* WorkVC.swift */; };
+		CA9E944120AB06520080C0CB /* Aspects.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA9E944020AB06520080C0CB /* Aspects.framework */; };
+		CA9E944220AB06520080C0CB /* Aspects.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA9E944020AB06520080C0CB /* Aspects.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +32,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				CA989B3F2066882100EE763B /* SDWebImage.framework in Embed Frameworks */,
+				CA9E944220AB06520080C0CB /* Aspects.framework in Embed Frameworks */,
 				CA989B432066885400EE763B /* DeclareLayoutSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -37,18 +41,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CA8EB2F12094D1460072F368 /* MessageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageVC.swift; sourceTree = "<group>"; };
+		CA8EB2F42094D1460072F368 /* UIViewController+TitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+TitleView.swift"; sourceTree = "<group>"; };
+		CA8EB2F72094D1460072F368 /* WorkVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkVC.swift; sourceTree = "<group>"; };
+		CA8EB2FA2094D1460072F368 /* MainTabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabVC.swift; sourceTree = "<group>"; };
+		CA8EB2FF2094D4470072F368 /* WorkItemsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkItemsDelegate.swift; sourceTree = "<group>"; };
 		CA989B23206687C200EE763B /* Dingding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dingding.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA989B26206687C200EE763B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CA989B28206687C200EE763B /* MessageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageVC.swift; sourceTree = "<group>"; };
 		CA989B2B206687C200EE763B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CA989B2D206687C200EE763B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA989B30206687C200EE763B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA989B32206687C200EE763B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA989B3D2066882100EE763B /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = ../Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
 		CA989B412066885400EE763B /* DeclareLayoutSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DeclareLayoutSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CAF7EE862066A4A000B85328 /* MainTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabVC.swift; sourceTree = "<group>"; };
-		CAF7EE882066AB9000B85328 /* UIViewController+TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+TitleView.swift"; sourceTree = "<group>"; };
-		CAF7EE8A2066AC4000B85328 /* WorkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkVC.swift; sourceTree = "<group>"; };
+		CA9E944020AB06520080C0CB /* Aspects.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Aspects.framework; path = ../Carthage/Build/iOS/Aspects.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +63,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA989B3E2066882100EE763B /* SDWebImage.framework in Frameworks */,
+				CA9E944120AB06520080C0CB /* Aspects.framework in Frameworks */,
 				CA989B422066885400EE763B /* DeclareLayoutSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -64,6 +71,90 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CA8EB2ED2094D1460072F368 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				CA8EB2EE2094D1460072F368 /* Module */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		CA8EB2EE2094D1460072F368 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				CA8EB2F92094D1460072F368 /* Main */,
+				CA8EB2EF2094D1460072F368 /* Message */,
+				CA8EB2F52094D1460072F368 /* Work */,
+				CA8EB2F32094D1460072F368 /* Common */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		CA8EB2EF2094D1460072F368 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				CA8EB2F02094D1460072F368 /* Message */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		CA8EB2F02094D1460072F368 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				CA8EB2F12094D1460072F368 /* MessageVC.swift */,
+				CA8EB2F22094D1460072F368 /* Model */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		CA8EB2F22094D1460072F368 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CA8EB2F32094D1460072F368 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				CA8EB2F42094D1460072F368 /* UIViewController+TitleView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		CA8EB2F52094D1460072F368 /* Work */ = {
+			isa = PBXGroup;
+			children = (
+				CA8EB2F62094D1460072F368 /* Work */,
+			);
+			path = Work;
+			sourceTree = "<group>";
+		};
+		CA8EB2F62094D1460072F368 /* Work */ = {
+			isa = PBXGroup;
+			children = (
+				CA8EB2F72094D1460072F368 /* WorkVC.swift */,
+				CA8EB2F82094D1460072F368 /* Model */,
+			);
+			path = Work;
+			sourceTree = "<group>";
+		};
+		CA8EB2F82094D1460072F368 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CA8EB2FF2094D4470072F368 /* WorkItemsDelegate.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CA8EB2F92094D1460072F368 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				CA8EB2FA2094D1460072F368 /* MainTabVC.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		CA989B1A206687C200EE763B = {
 			isa = PBXGroup;
 			children = (
@@ -84,15 +175,12 @@
 		CA989B25206687C200EE763B /* Dingding */ = {
 			isa = PBXGroup;
 			children = (
+				CA8EB2ED2094D1460072F368 /* Source */,
 				CA989B26206687C200EE763B /* AppDelegate.swift */,
-				CAF7EE862066A4A000B85328 /* MainTabVC.swift */,
-				CA989B28206687C200EE763B /* MessageVC.swift */,
-				CAF7EE8A2066AC4000B85328 /* WorkVC.swift */,
 				CA989B2A206687C200EE763B /* Main.storyboard */,
 				CA989B2D206687C200EE763B /* Assets.xcassets */,
 				CA989B2F206687C200EE763B /* LaunchScreen.storyboard */,
 				CA989B32206687C200EE763B /* Info.plist */,
-				CAF7EE882066AB9000B85328 /* UIViewController+TitleView.swift */,
 			);
 			path = Dingding;
 			sourceTree = "<group>";
@@ -100,6 +188,7 @@
 		CA989B3C2066880500EE763B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CA9E944020AB06520080C0CB /* Aspects.framework */,
 				CA989B412066885400EE763B /* DeclareLayoutSwift.framework */,
 				CA989B3D2066882100EE763B /* SDWebImage.framework */,
 			);
@@ -179,11 +268,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAF7EE892066AB9000B85328 /* UIViewController+TitleView.swift in Sources */,
-				CA989B29206687C200EE763B /* MessageVC.swift in Sources */,
-				CAF7EE872066A4A000B85328 /* MainTabVC.swift in Sources */,
+				CA8EB3002094D4470072F368 /* WorkItemsDelegate.swift in Sources */,
+				CA8EB2FB2094D1460072F368 /* MessageVC.swift in Sources */,
 				CA989B27206687C200EE763B /* AppDelegate.swift in Sources */,
-				CAF7EE8B2066AC4000B85328 /* WorkVC.swift in Sources */,
+				CA8EB2FC2094D1460072F368 /* UIViewController+TitleView.swift in Sources */,
+				CA8EB2FE2094D1460072F368 /* MainTabVC.swift in Sources */,
+				CA8EB2FD2094D1460072F368 /* WorkVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

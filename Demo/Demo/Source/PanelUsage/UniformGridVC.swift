@@ -16,10 +16,22 @@ class UniformGridVC: UIViewController {
         view.backgroundColor = .white
         view.hostElement {
             UniformGrid(columnCount: 3)[
-                Label(.text <- "11111", .bgColor <- UIColor.red),
-                Label(.text <- "22222222222222222222222222", .bgColor <- UIColor.green),
-                Label(.text <- "33333333333333333333333333", .bgColor <- UIColor.blue),
-                Label(.text <- "44444444444444444444444444", .bgColor <- UIColor.yellow)
+                Label {
+                    $0.text = "11111"
+                    $0.backgroundColor = .red
+                },
+                Label {
+                    $0.text = "22222222222222222222222222"
+                    $0.backgroundColor = .green
+                },
+                Label {
+                    $0.text = "33333333333333333333333333"
+                    $0.backgroundColor = .blue
+                },
+                Label {
+                    $0.text = "44444444444444444444444444"
+                    $0.backgroundColor = .yellow
+                }
             ]
         }
     }

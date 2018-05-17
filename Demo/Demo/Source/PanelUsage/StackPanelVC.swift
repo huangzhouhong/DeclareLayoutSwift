@@ -16,8 +16,8 @@ class StackPanelVC: UIViewController {
         view.backgroundColor = .white
         view.hostElement {
             StackPanel()[
-                Image(.image <- "icon1", .hAlign <- .Center),
-                Label(.text <- "Name", .hAlign <- .Center)
+                Image(.hAlign <- .Center) { $0.image = #imageLiteral(resourceName: "icon1") },
+                Label(.hAlign <- .Center) { $0.text = "Name" }
             ]
         }
     }
